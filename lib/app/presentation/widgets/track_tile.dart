@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retip/app/domain/cases/favourites/is_in_favourites.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
 import 'package:retip/app/presentation/widgets/more/more_icon.dart';
 import 'package:retip/app/presentation/widgets/rp_list_tile.dart';
@@ -13,7 +13,7 @@ import 'package:retip/app/presentation/widgets/tiles/remove_from_fav_tile.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class TrackTile extends StatelessWidget {
-  final TrackEntity track;
+  final TrackEntityBack track;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final VoidCallback? onMore;

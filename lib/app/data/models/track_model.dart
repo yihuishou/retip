@@ -2,9 +2,9 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 
-class TrackModel extends TrackEntity {
+class TrackModel extends TrackEntityBack {
   TrackModel._({
     required super.id,
     super.albumId,

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:retip/app/domain/cases/get_all_tracks.dart';
 import 'package:retip/app/domain/cases/play_audio.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 
 part 'tracks_event.dart';
 part 'tracks_state.dart';

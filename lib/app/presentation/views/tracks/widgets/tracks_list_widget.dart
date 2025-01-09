@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
 import 'package:retip/app/presentation/widgets/rp_icon_button.dart';
 import 'package:retip/app/presentation/widgets/rp_list_tile.dart';
@@ -7,7 +7,7 @@ import 'package:retip/app/presentation/widgets/rp_text.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class TracksListWidget extends StatelessWidget {
-  final List<TrackEntity> tracks;
+  final List<TrackEntityBack> tracks;
   final void Function(int index)? onTap;
 
   const TracksListWidget({

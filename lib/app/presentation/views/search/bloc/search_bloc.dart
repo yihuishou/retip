@@ -8,7 +8,7 @@ import 'package:retip/app/domain/entities/abstract_entity.dart';
 import 'package:retip/app/domain/entities/album_entity.dart';
 import 'package:retip/app/domain/entities/artist_entity.dart';
 import 'package:retip/app/domain/entities/playlist_entity.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -47,7 +47,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final artists = <ArtistEntity>[];
     final albums = <AlbumEntity>[];
     final playlists = <PlaylistEntity>[];
-    final tracks = <TrackEntity>[];
+    final tracks = <TrackEntityBack>[];
 
     final query = event.text.toLowerCase();
 

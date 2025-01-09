@@ -5,7 +5,7 @@ import 'package:retip/app/domain/entities/abstract_entity.dart';
 import 'package:retip/app/domain/entities/album_entity.dart';
 import 'package:retip/app/domain/entities/artist_entity.dart';
 import 'package:retip/app/domain/entities/playlist_entity.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/pages/album/album_page.dart';
 import 'package:retip/app/presentation/pages/artist/artist_page.dart';
 import 'package:retip/app/presentation/pages/favourites/favourites_page.dart';
@@ -98,7 +98,7 @@ class _ExploreTabState extends State<ExploreTab> {
             hasChanged ? snapshot.requireData[0] : initialData[0]);
         final albums = List<AlbumEntity>.from(
             hasChanged ? snapshot.requireData[1] : initialData[1]);
-        final tracks = List<TrackEntity>.from(
+        final tracks = List<TrackEntityBack>.from(
             hasChanged ? snapshot.requireData[2] : initialData[2]);
         final playlists = List<PlaylistEntity>.from(
             hasChanged ? snapshot.requireData[3] : initialData[3]);

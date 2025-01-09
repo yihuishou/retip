@@ -3,13 +3,14 @@ import 'dart:io';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 
 class JustAudioProvider extends AudioPlayer {
   final playlist = ConcatenatingAudioSource(children: []);
-  final tracks = <TrackEntity>[];
+  final tracks = <TrackEntityBack>[];
 
-  Future<void> setPlaylist(List<TrackEntity> tracks, [int index = 0]) async {
+  Future<void> setPlaylist(List<TrackEntityBack> tracks,
+      [int index = 0]) async {
     final tmpDir = await getTemporaryDirectory();
     final children = <AudioSource>[];
 

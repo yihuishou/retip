@@ -2,7 +2,7 @@ part of 'tracks_bloc.dart';
 
 @immutable
 final class TracksState {
-  final List<TrackEntity> tracks;
+  final List<TrackEntityBack> tracks;
   final SortType sortType;
 
   const TracksState({
@@ -11,7 +11,7 @@ final class TracksState {
   });
 
   TracksState copyWith({
-    List<TrackEntity>? tracks,
+    List<TrackEntityBack>? tracks,
     SortType? sortType,
   }) {
     return TracksState(

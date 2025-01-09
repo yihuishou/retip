@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:retip/app/domain/cases/favourites/get_all_favourites.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 
 part 'favourites_event.dart';
 part 'favourites_state.dart';
@@ -22,7 +22,7 @@ class FavouritesBloc extends Bloc<FavouritesEvent, FavouritesState> {
     emit(state.copyWith(isLoading: true));
 
     final data = await GetAllFavourites.call('TrackModel');
-    final tracks = List<TrackEntity>.from(data);
+    final tracks = List<TrackEntityBack>.from(data);
 
     if (tracks.isNotEmpty) {
       emit(state.copyWith(tracks: tracks, isLoading: false));

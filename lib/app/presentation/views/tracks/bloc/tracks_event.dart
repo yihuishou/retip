@@ -8,7 +8,7 @@ sealed class TracksEvent {
 class FetchTracksEvent extends TracksEvent {}
 
 class SortTracksEvent extends TracksEvent {
-  final List<TrackEntity>? tracks;
+  final List<TrackEntityBack>? tracks;
   final SortType sortType;
 
   const SortTracksEvent({

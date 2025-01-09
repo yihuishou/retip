@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retip/app/domain/cases/playlist/create_playlist.dart';
 import 'package:retip/app/domain/cases/playlist/get_all_playlists.dart';
 import 'package:retip/app/domain/cases/playlist/update_playlist.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/widgets/more/more_tile.dart';
 import 'package:retip/app/presentation/widgets/playlist_artwork.dart';
 import 'package:retip/app/presentation/widgets/rp_divider.dart';
@@ -16,7 +16,7 @@ import 'package:retip/core/router/retip_router.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class AddToPlaylistTile extends StatelessWidget {
-  final TrackEntity track;
+  final TrackEntityBack track;
   final VoidCallback? onTap;
 
   const AddToPlaylistTile({

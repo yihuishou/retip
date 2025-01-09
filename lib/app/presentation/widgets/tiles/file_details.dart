@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/widgets/more/more_tile.dart';
 import 'package:retip/app/presentation/widgets/rp_divider.dart';
 import 'package:retip/app/presentation/widgets/rp_icon.dart';
@@ -15,7 +15,7 @@ import 'package:retip/core/router/retip_router.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class FileDetailsTile extends StatelessWidget {
-  final TrackEntity track;
+  final TrackEntityBack track;
 
   const FileDetailsTile({required this.track, super.key});
 

@@ -4,7 +4,7 @@ import 'package:retip/app/domain/cases/favourites/is_in_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/remove_from_favourites.dart';
 import 'package:retip/app/domain/cases/get_all_tracks.dart';
 import 'package:retip/app/domain/cases/play_audio.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/widgets/buttons/favourite_button.dart';
 import 'package:retip/app/presentation/widgets/track_tile.dart';
 import 'package:retip/app/presentation/widgets/widgets.dart';
@@ -19,7 +19,7 @@ class TracksTab extends StatefulWidget {
 }
 
 class _TracksTabState extends State<TracksTab> {
-  static Future<List<TrackEntity>> future = GetAllTracks.call();
+  static Future<List<TrackEntityBack>> future = GetAllTracks.call();
 
   @override
   Widget build(BuildContext context) {

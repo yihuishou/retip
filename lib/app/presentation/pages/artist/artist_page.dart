@@ -6,7 +6,7 @@ import 'package:retip/app/domain/cases/favourites/is_in_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/remove_from_favourites.dart';
 import 'package:retip/app/domain/cases/play_audio.dart';
 import 'package:retip/app/domain/entities/artist_entity.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/pages/album/album_page.dart';
 import 'package:retip/app/presentation/views/albums/albums_view.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
@@ -45,7 +45,7 @@ class _ArtistPageState extends State<ArtistPage> {
 
   SortMode sortMode = SortMode.numerically;
 
-  final tracks = <TrackEntity>[];
+  final tracks = <TrackEntityBack>[];
 
   Duration duration = Duration.zero;
 

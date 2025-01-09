@@ -2,7 +2,7 @@ part of 'favourites_bloc.dart';
 
 @immutable
 class FavouritesState {
-  final List<TrackEntity> tracks;
+  final List<TrackEntityBack> tracks;
   final bool isLoading;
   final String title;
 
@@ -13,7 +13,7 @@ class FavouritesState {
   });
 
   FavouritesState copyWith({
-    List<TrackEntity>? tracks,
+    List<TrackEntityBack>? tracks,
     bool? isLoading,
     String? title,
   }) {

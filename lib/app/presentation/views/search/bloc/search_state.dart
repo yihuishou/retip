@@ -11,7 +11,7 @@ final class SearchSuccessState extends SearchState {
   final List<ArtistEntity> artists;
   final List<AlbumEntity> albums;
   final List<PlaylistEntity> playlists;
-  final List<TrackEntity> tracks;
+  final List<TrackEntityBack> tracks;
 
   final String query;
 

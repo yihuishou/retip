@@ -9,14 +9,14 @@ import 'package:retip/core/utils/sizer.dart';
 import 'package:retip/core/utils/utils.dart';
 
 import 'abstract_entity.dart';
-import 'track_entity.dart';
+import 'track_entity_back.dart';
 
 abstract class AlbumEntity extends AbstractEntity {
   final String title;
   final Uint8List? artwork;
   final String? year;
 
-  final List<TrackEntity> tracks;
+  final List<TrackEntityBack> tracks;
   final String artist;
   final int? artistId;
 

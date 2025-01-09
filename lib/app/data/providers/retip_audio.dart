@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/domain/repositories/audio_repository.dart';
 
 class RetipAudio extends AudioPlayer {
@@ -12,7 +12,7 @@ class RetipAudio extends AudioPlayer {
     children: [],
   );
 
-  List<TrackEntity> tracks = [];
+  List<TrackEntityBack> tracks = [];
 
   Future<void> init() async {
     final audio = GetIt.I.get<AudioRepository>();
@@ -39,11 +39,11 @@ class RetipAudio extends AudioPlayer {
     await setRepeatMode(audio.getRepeatMode());
   }
 
-  TrackEntity? get nextArtist {
+  TrackEntityBack? get nextArtist {
     return nextIndex != null ? tracks[nextIndex!] : null;
   }
 
-  TrackEntity? get previousArtist {
+  TrackEntityBack? get previousArtist {
     return previousIndex != null ? tracks[previousIndex!] : null;
   }
 
@@ -63,7 +63,7 @@ class RetipAudio extends AudioPlayer {
   Directory? tmpDir;
 
   Future<Duration?> playlistAddAll(
-    List<TrackEntity> tracks, [
+    List<TrackEntityBack> tracks, [
     int? index,
   ]) async {
     tmpDir ??= await getTemporaryDirectory();

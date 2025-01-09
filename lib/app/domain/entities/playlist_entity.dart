@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:retip/app/domain/entities/abstract_entity.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/pages/playlist/playlist_page.dart';
 import 'package:retip/app/presentation/widgets/playlist_artwork.dart';
 import 'package:retip/app/presentation/widgets/rp_list_tile.dart';
@@ -13,7 +13,7 @@ import 'package:retip/core/utils/utils.dart';
 
 class PlaylistEntity extends AbstractEntity {
   String name;
-  List<TrackEntity> tracks;
+  List<TrackEntityBack> tracks;
 
   PlaylistEntity({
     required super.id,

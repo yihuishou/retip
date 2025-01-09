@@ -1,7 +1,7 @@
 import 'package:retip/app/data/providers/just_audio_provider.dart';
 import 'package:retip/app/data/providers/retip_permission.dart';
 import 'package:retip/app/data/providers/shared_preferences_provider.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/domain/repositories/audio_repository.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
 
@@ -68,7 +68,7 @@ class AudioRepositoryImplementation extends AudioRepository {
   }
 
   @override
-  Future<bool> setTracksList(List<TrackEntity> tracks) async {
+  Future<bool> setTracksList(List<TrackEntityBack> tracks) async {
     final trackIds = tracks.map((e) => e.id.toString()).toList();
 
     return await sharedPreferencesProvider.setStringList(
@@ -78,7 +78,7 @@ class AudioRepositoryImplementation extends AudioRepository {
   }
 
   @override
-  Future<List<TrackEntity>> getTracksList() async {
+  Future<List<TrackEntityBack>> getTracksList() async {
     final trackIds =
         sharedPreferencesProvider.getStringList(Keys.audioTracksList.name) ??
             [];
@@ -137,7 +137,8 @@ class AudioRepositoryImplementation extends AudioRepository {
   }
 
   @override
-  Future<void> setPlaylist(List<TrackEntity> tracks, [int index = 0]) async {
+  Future<void> setPlaylist(List<TrackEntityBack> tracks,
+      [int index = 0]) async {
     // Set the playlist to the just audio provider
     await justAudioProvider.setPlaylist(tracks, index);
     // Save the tracks list to the shared preferences

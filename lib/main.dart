@@ -1,18 +1,23 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:retip/app/data/providers/just_audio_provider.dart';
+import 'package:retip/app/data/providers/objectbox_provider.dart';
 import 'package:retip/app/data/providers/on_audio_query_provider.dart';
+import 'package:retip/app/data/providers/retip_audio.dart';
 import 'package:retip/app/data/providers/shared_preferences_provider.dart';
 import 'package:retip/app/data/repositories/audio_repository_implementation.dart';
 import 'package:retip/app/data/repositories/library_repository_implementation.dart';
 import 'package:retip/app/data/repositories/theme_repository_implementation.dart';
-import 'package:retip/app/retip_app.dart';
 import 'package:retip/app/domain/repositories/audio_repository.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
-import 'package:retip/app/data/providers/retip_audio.dart';
+import 'package:retip/app/retip_app.dart';
+import 'package:retip/objectbox.g.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -30,6 +35,15 @@ void main() async {
     androidStopForegroundOnPause: true,
     androidNotificationOngoing: true,
   );
+
+  // Objectbox setup
+  final appDir = await getApplicationDocumentsDirectory();
+  final store = await openStore(directory: join(appDir.path, 'objectbox'));
+  GetIt.I.registerSingleton<ObjectboxProvider>(ObjectboxProvider(store));
+
+  if (kReleaseMode == false && Admin.isAvailable()) {
+    GetIt.I.registerSingleton<Admin>(Admin(store));
+  }
 
   // Setup the dependency injection
   final sharedPrefs = await SharedPreferences.getInstance();
@@ -49,6 +63,7 @@ void main() async {
     LibraryRepositoryImplementation(
       onAudioQueryProvider: OnAudioQueryProvider(),
       sharedPreferencesProvider: sharedPrefsProvider,
+      objectboxProvider: GetIt.I.get<ObjectboxProvider>(),
     ),
   );
 

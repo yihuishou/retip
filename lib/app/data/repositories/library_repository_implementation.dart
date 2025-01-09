@@ -8,15 +8,21 @@ import 'package:retip/app/data/providers/shared_preferences_provider.dart';
 import 'package:retip/app/domain/entities/album_entity.dart';
 import 'package:retip/app/domain/entities/artist_entity.dart';
 import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
+import 'package:retip/objectbox.g.dart';
+
+import '../providers/objectbox_provider.dart';
 
 class LibraryRepositoryImplementation implements LibraryRepository {
   final OnAudioQueryProvider onAudioQueryProvider;
   final SharedPreferencesProvider sharedPreferencesProvider;
+  final ObjectboxProvider objectboxProvider;
 
   LibraryRepositoryImplementation({
     required this.onAudioQueryProvider,
     required this.sharedPreferencesProvider,
+    required this.objectboxProvider,
   });
 
   @override
@@ -138,7 +144,7 @@ class LibraryRepositoryImplementation implements LibraryRepository {
   }
 
   @override
-  Future<List<TrackEntity>> getAllTracks() async {
+  Future<List<TrackEntityBack>> getAllTracks() async {
     final data = await onAudioQueryProvider.getAllSongs();
 
     final artworks = <int, Uint8List>{};
@@ -169,6 +175,23 @@ class LibraryRepositoryImplementation implements LibraryRepository {
       }
 
       tracks.add(TrackModel.fromSongModel(track, artwork));
+
+      if (track.uri != null) {
+        final box = objectboxProvider.store.box<TrackEntity>();
+
+        final entity = await box.query(TrackEntity_.path.equals(track.uri!)).build().findFirstAsync();
+
+        if (entity == null) {
+          box.put(
+            TrackEntity(
+              title: track.title,
+              artist: track.artist!,
+              album: track.album!,
+              path: track.uri!,
+            ),
+          );
+        }
+      }
     }
 
     return tracks;
@@ -188,7 +211,7 @@ class LibraryRepositoryImplementation implements LibraryRepository {
   }
 
   @override
-  Future<TrackEntity> getTrack(int id) {
+  Future<TrackEntityBack> getTrack(int id) {
     // TODO: implement getTrack
     throw UnimplementedError();
   }

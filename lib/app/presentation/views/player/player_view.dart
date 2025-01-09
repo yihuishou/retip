@@ -5,7 +5,7 @@ import 'package:retip/app/data/providers/retip_audio.dart';
 import 'package:retip/app/domain/cases/favourites/add_to_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/is_in_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/remove_from_favourites.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/domain/repositories/audio_repository.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
 import 'package:retip/app/presentation/widgets/more/more_icon.dart';
@@ -38,7 +38,7 @@ class PlayerView extends StatefulWidget {
 }
 
 class _PlayerViewState extends State<PlayerView> {
-  TrackEntity? currentTrack;
+  TrackEntityBack? currentTrack;
   bool isFavourite = false;
   int? currentIndex;
 

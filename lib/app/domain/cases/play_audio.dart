@@ -1,10 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:retip/app/data/providers/retip_audio.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
+import 'package:retip/app/domain/entities/track_entity_back.dart';
 
 mixin PlayAudio {
   static void call(
-    List<TrackEntity> tracks, {
+    List<TrackEntityBack> tracks, {
     bool? shuffle,
     int? index,
   }) async {
