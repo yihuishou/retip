@@ -43,6 +43,8 @@ dependencies:
   just_audio: ^0.9.40
   just_audio_background: ^0.0.1-beta.13
   meta: ^1.15.0
+  objectbox: ^4.0.3
+  objectbox_flutter_libs: ^4.0.3
   on_audio_query:
     git:
       url: https://github.com/rozpo/on_audio_query
@@ -71,6 +73,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+  objectbox_generator: ^4.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
