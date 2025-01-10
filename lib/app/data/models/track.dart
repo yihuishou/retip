@@ -19,6 +19,7 @@ class Track implements TrackEntity {
     required String artist,
     required String album,
     required String path,
+    required this.extra,
   })  : _title = title,
         _artist = artist,
         _album = album,
@@ -35,4 +36,7 @@ class Track implements TrackEntity {
 
   @override
   String get path => _path;
+
+  @override
+  String extra;
 }

@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:7022145539962710513",
-      "lastPropertyId": "5:4647642955942589039",
+      "lastPropertyId": "7:4371045204997912565",
       "name": "Track",
       "properties": [
         {
@@ -33,6 +33,11 @@
           "id": "5:4647642955942589039",
           "name": "path",
           "type": 9
+        },
+        {
+          "id": "7:4371045204997912565",
+          "name": "extra",
+          "type": 9
         }
       ],
       "relations": []
@@ -46,7 +51,9 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    4734426344512292421
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

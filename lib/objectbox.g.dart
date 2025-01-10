@@ -22,7 +22,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(1, 7022145539962710513),
       name: 'Track',
-      lastPropertyId: const obx_int.IdUid(5, 4647642955942589039),
+      lastPropertyId: const obx_int.IdUid(7, 4371045204997912565),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -48,6 +48,11 @@ final _entities = <obx_int.ModelEntity>[
         obx_int.ModelProperty(
             id: const obx_int.IdUid(5, 4647642955942589039),
             name: 'path',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 4371045204997912565),
+            name: 'extra',
             type: 9,
             flags: 0)
       ],
@@ -96,7 +101,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [4734426344512292421],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -116,12 +121,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final artistOffset = fbb.writeString(object.artist);
           final titleOffset = fbb.writeString(object.title);
           final pathOffset = fbb.writeString(object.path);
-          fbb.startTable(6);
+          final extraOffset = fbb.writeString(object.extra);
+          fbb.startTable(8);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, albumOffset);
           fbb.addOffset(2, artistOffset);
           fbb.addOffset(3, titleOffset);
           fbb.addOffset(4, pathOffset);
+          fbb.addOffset(6, extraOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -138,12 +145,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 6, '');
           final pathParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 12, '');
+          final extraParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 16, '');
           final object = Track(
               id: idParam,
               title: titleParam,
               artist: artistParam,
               album: albumParam,
-              path: pathParam);
+              path: pathParam,
+              extra: extraParam);
 
           return object;
         })
@@ -172,4 +182,8 @@ class Track_ {
   /// See [Track.path].
   static final path =
       obx.QueryStringProperty<Track>(_entities[0].properties[4]);
+
+  /// See [Track.extra].
+  static final extra =
+      obx.QueryStringProperty<Track>(_entities[0].properties[5]);
 }

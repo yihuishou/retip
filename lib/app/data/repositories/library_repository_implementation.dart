@@ -191,6 +191,7 @@ class LibraryRepositoryImplementation implements LibraryRepository {
               artist: track.artist!,
               album: track.album!,
               path: track.uri!,
+              extra: track.genre ?? '',
             ),
           );
         }
