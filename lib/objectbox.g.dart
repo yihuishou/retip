@@ -14,39 +14,39 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'app/domain/entities/track_entity.dart';
+import 'app/data/models/track.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 8775309485662985746),
-      name: 'TrackEntity',
-      lastPropertyId: const obx_int.IdUid(6, 4829398179293400059),
+      id: const obx_int.IdUid(1, 7022145539962710513),
+      name: 'Track',
+      lastPropertyId: const obx_int.IdUid(5, 4647642955942589039),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 2040056894743719403),
+            id: const obx_int.IdUid(1, 8291983357273136906),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 1193308535660844719),
-            name: 'title',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 2559660020108524654),
-            name: 'artist',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 5563310247118746264),
+            id: const obx_int.IdUid(2, 7031231791405030615),
             name: 'album',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 4829398179293400059),
+            id: const obx_int.IdUid(3, 1331962780635815717),
+            name: 'artist',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 9161416814737327027),
+            name: 'title',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 4647642955942589039),
             name: 'path',
             type: 9,
             flags: 0)
@@ -90,38 +90,38 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 8775309485662985746),
+      lastEntityId: const obx_int.IdUid(1, 7022145539962710513),
       lastIndexId: const obx_int.IdUid(0, 0),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [4604320543661579222],
+      retiredPropertyUids: const [],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    TrackEntity: obx_int.EntityDefinition<TrackEntity>(
+    Track: obx_int.EntityDefinition<Track>(
         model: _entities[0],
-        toOneRelations: (TrackEntity object) => [],
-        toManyRelations: (TrackEntity object) => {},
-        getId: (TrackEntity object) => object.id,
-        setId: (TrackEntity object, int id) {
+        toOneRelations: (Track object) => [],
+        toManyRelations: (Track object) => {},
+        getId: (Track object) => object.id,
+        setId: (Track object, int id) {
           object.id = id;
         },
-        objectToFB: (TrackEntity object, fb.Builder fbb) {
-          final titleOffset = fbb.writeString(object.title);
-          final artistOffset = fbb.writeString(object.artist);
+        objectToFB: (Track object, fb.Builder fbb) {
           final albumOffset = fbb.writeString(object.album);
+          final artistOffset = fbb.writeString(object.artist);
+          final titleOffset = fbb.writeString(object.title);
           final pathOffset = fbb.writeString(object.path);
-          fbb.startTable(7);
+          fbb.startTable(6);
           fbb.addInt64(0, object.id);
-          fbb.addOffset(1, titleOffset);
+          fbb.addOffset(1, albumOffset);
           fbb.addOffset(2, artistOffset);
-          fbb.addOffset(3, albumOffset);
-          fbb.addOffset(5, pathOffset);
+          fbb.addOffset(3, titleOffset);
+          fbb.addOffset(4, pathOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -131,14 +131,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final idParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final titleParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 6, '');
+              .vTableGet(buffer, rootOffset, 10, '');
           final artistParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 8, '');
           final albumParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 10, '');
+              .vTableGet(buffer, rootOffset, 6, '');
           final pathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 14, '');
-          final object = TrackEntity(
+              .vTableGet(buffer, rootOffset, 12, '');
+          final object = Track(
               id: idParam,
               title: titleParam,
               artist: artistParam,
@@ -152,25 +152,24 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [TrackEntity] entity fields to define ObjectBox queries.
-class TrackEntity_ {
-  /// See [TrackEntity.id].
-  static final id =
-      obx.QueryIntegerProperty<TrackEntity>(_entities[0].properties[0]);
+/// [Track] entity fields to define ObjectBox queries.
+class Track_ {
+  /// See [Track.id].
+  static final id = obx.QueryIntegerProperty<Track>(_entities[0].properties[0]);
 
-  /// See [TrackEntity.title].
-  static final title =
-      obx.QueryStringProperty<TrackEntity>(_entities[0].properties[1]);
-
-  /// See [TrackEntity.artist].
-  static final artist =
-      obx.QueryStringProperty<TrackEntity>(_entities[0].properties[2]);
-
-  /// See [TrackEntity.album].
+  /// See [Track.album].
   static final album =
-      obx.QueryStringProperty<TrackEntity>(_entities[0].properties[3]);
+      obx.QueryStringProperty<Track>(_entities[0].properties[1]);
 
-  /// See [TrackEntity.path].
+  /// See [Track.artist].
+  static final artist =
+      obx.QueryStringProperty<Track>(_entities[0].properties[2]);
+
+  /// See [Track.title].
+  static final title =
+      obx.QueryStringProperty<Track>(_entities[0].properties[3]);
+
+  /// See [Track.path].
   static final path =
-      obx.QueryStringProperty<TrackEntity>(_entities[0].properties[4]);
+      obx.QueryStringProperty<Track>(_entities[0].properties[4]);
 }

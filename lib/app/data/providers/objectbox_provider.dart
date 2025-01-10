@@ -1,7 +1,11 @@
 import 'package:objectbox/objectbox.dart';
 
-class ObjectboxProvider {
-  final Store store;
+import '../models/track.dart';
 
-  ObjectboxProvider(this.store);
+class ObjectboxProvider {
+  final Store _store;
+
+  ObjectboxProvider(this._store);
+
+  Box<Track> get trackBox => _store.box<Track>();
 }

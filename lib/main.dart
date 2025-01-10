@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,11 +40,32 @@ void main() async {
 
   // Objectbox setup
   final appDir = await getApplicationDocumentsDirectory();
-  final store = await openStore(directory: join(appDir.path, 'objectbox'));
-  GetIt.I.registerSingleton<ObjectboxProvider>(ObjectboxProvider(store));
+  final dbPath = join(appDir.path, 'objectbox');
+  try {
+    final store = await openStore(directory: dbPath);
+    GetIt.I.registerSingleton<ObjectboxProvider>(ObjectboxProvider(store));
 
-  if (kReleaseMode == false && Admin.isAvailable()) {
-    GetIt.I.registerSingleton<Admin>(Admin(store));
+    if (kReleaseMode == false && Admin.isAvailable()) {
+      GetIt.I.registerSingleton<Admin>(Admin(store));
+    }
+  } catch (e) {
+    final dbFile = File(join(dbPath, 'data.mdb'));
+    final lockFile = File(join(dbPath, 'lock.mdb'));
+
+    if (await dbFile.exists()) {
+      dbFile.delete();
+    }
+
+    if (await lockFile.exists()) {
+      lockFile.delete();
+    }
+
+    final store = await openStore(directory: dbPath);
+    GetIt.I.registerSingleton<ObjectboxProvider>(ObjectboxProvider(store));
+
+    if (kReleaseMode == false && Admin.isAvailable()) {
+      GetIt.I.registerSingleton<Admin>(Admin(store));
+    }
   }
 
   // Setup the dependency injection

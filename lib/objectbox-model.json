@@ -4,33 +4,33 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:8775309485662985746",
-      "lastPropertyId": "6:4829398179293400059",
-      "name": "TrackEntity",
+      "id": "1:7022145539962710513",
+      "lastPropertyId": "5:4647642955942589039",
+      "name": "Track",
       "properties": [
         {
-          "id": "1:2040056894743719403",
+          "id": "1:8291983357273136906",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:1193308535660844719",
-          "name": "title",
-          "type": 9
-        },
-        {
-          "id": "3:2559660020108524654",
-          "name": "artist",
-          "type": 9
-        },
-        {
-          "id": "4:5563310247118746264",
+          "id": "2:7031231791405030615",
           "name": "album",
           "type": 9
         },
         {
-          "id": "6:4829398179293400059",
+          "id": "3:1331962780635815717",
+          "name": "artist",
+          "type": 9
+        },
+        {
+          "id": "4:9161416814737327027",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "5:4647642955942589039",
           "name": "path",
           "type": 9
         }
@@ -38,7 +38,7 @@
       "relations": []
     }
   ],
-  "lastEntityId": "1:8775309485662985746",
+  "lastEntityId": "1:7022145539962710513",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
@@ -46,9 +46,7 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    4604320543661579222
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

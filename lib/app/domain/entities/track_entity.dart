@@ -1,21 +1,7 @@
-import 'package:objectbox/objectbox.dart';
-
-@Entity()
-class TrackEntity {
-  @Id()
-  int id;
-
-  String title;
-  String artist;
-  String album;
-
-  String path;
-
-  TrackEntity({
-    this.id = 0,
-    required this.title,
-    required this.artist,
-    required this.album,
-    required this.path,
-  });
+abstract class TrackEntity {
+  int get id;
+  String get title;
+  String get artist;
+  String get album;
+  String get path;
 }

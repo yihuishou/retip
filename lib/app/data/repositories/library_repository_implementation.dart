@@ -7,11 +7,11 @@ import 'package:retip/app/data/providers/on_audio_query_provider.dart';
 import 'package:retip/app/data/providers/shared_preferences_provider.dart';
 import 'package:retip/app/domain/entities/album_entity.dart';
 import 'package:retip/app/domain/entities/artist_entity.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
 import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
 import 'package:retip/objectbox.g.dart';
 
+import '../models/track.dart';
 import '../providers/objectbox_provider.dart';
 
 class LibraryRepositoryImplementation implements LibraryRepository {
@@ -177,13 +177,16 @@ class LibraryRepositoryImplementation implements LibraryRepository {
       tracks.add(TrackModel.fromSongModel(track, artwork));
 
       if (track.uri != null) {
-        final box = objectboxProvider.store.box<TrackEntity>();
+        final box = objectboxProvider.trackBox;
 
-        final entity = await box.query(TrackEntity_.path.equals(track.uri!)).build().findFirstAsync();
+        final entity = await box
+            .query(Track_.path.equals(track.uri!))
+            .build()
+            .findFirstAsync();
 
         if (entity == null) {
           box.put(
-            TrackEntity(
+            Track(
               title: track.title,
               artist: track.artist!,
               album: track.album!,
