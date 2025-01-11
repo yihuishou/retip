@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:retip/app/domain/cases/favourites/get_all_favourites.dart';
 import 'package:retip/app/domain/cases/get_all_artists.dart';
-import 'package:retip/app/domain/entities/artist_entity.dart';
+import 'package:retip/app/domain/entities/artist_entity_back.dart';
 import 'package:retip/app/presentation/pages/artist/artist_page.dart';
 import 'package:retip/app/presentation/views/settings/cubit/settings_cubit.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
@@ -13,7 +13,7 @@ import 'package:retip/core/l10n/retip_l10n.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class ArtistsView extends StatefulWidget {
-  final List<ArtistEntity> artists;
+  final List<ArtistEntityBack> artists;
 
   const ArtistsView({
     this.artists = const [],
@@ -25,7 +25,7 @@ class ArtistsView extends StatefulWidget {
 }
 
 class _ArtistsViewState extends State<ArtistsView> {
-  static Future<List<ArtistEntity>> future = GetAllArtists.call();
+  static Future<List<ArtistEntityBack>> future = GetAllArtists.call();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class _ArtistsViewState extends State<ArtistsView> {
                   );
 
                   if (widget.artists.isNotEmpty) {
-                    final data = await GetAllFavourites.call<ArtistEntity>(
+                    final data = await GetAllFavourites.call<ArtistEntityBack>(
                         'ArtistModel');
 
                     if (data.isEmpty && context.mounted) {

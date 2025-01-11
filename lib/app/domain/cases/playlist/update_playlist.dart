@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 mixin UpdatePlaylist {
-  static Future<bool> call(PlaylistEntity playlist) async {
+  static Future<bool> call(PlaylistEntityBack playlist) async {
     final prefs = GetIt.I.get<SharedPreferences>();
 
     final key = 'pl_${playlist.id}';

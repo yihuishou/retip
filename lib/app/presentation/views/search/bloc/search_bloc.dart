@@ -5,9 +5,9 @@ import 'package:retip/app/data/providers/shared_preferences_provider.dart';
 import 'package:retip/app/domain/cases/get_all_artists.dart';
 import 'package:retip/app/domain/cases/playlist/get_all_playlists.dart';
 import 'package:retip/app/domain/entities/abstract_entity.dart';
-import 'package:retip/app/domain/entities/album_entity.dart';
-import 'package:retip/app/domain/entities/artist_entity.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/album_entity_back.dart';
+import 'package:retip/app/domain/entities/artist_entity_back.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:retip/app/domain/entities/track_entity_back.dart';
 
 part 'search_event.dart';
@@ -44,9 +44,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final data = await GetAllArtists.call();
     final pls = await GetAllPlaylists.call();
 
-    final artists = <ArtistEntity>[];
-    final albums = <AlbumEntity>[];
-    final playlists = <PlaylistEntity>[];
+    final artists = <ArtistEntityBack>[];
+    final albums = <AlbumEntityBack>[];
+    final playlists = <PlaylistEntityBack>[];
     final tracks = <TrackEntityBack>[];
 
     final query = event.text.toLowerCase();

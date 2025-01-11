@@ -3,7 +3,7 @@ import 'package:retip/app/domain/cases/favourites/add_to_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/is_in_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/remove_from_favourites.dart';
 import 'package:retip/app/domain/cases/play_audio.dart';
-import 'package:retip/app/domain/entities/album_entity.dart';
+import 'package:retip/app/domain/entities/album_entity_back.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
 import 'package:retip/app/presentation/widgets/buttons/favourite_button.dart';
 import 'package:retip/app/presentation/widgets/buttons/play_button.dart';
@@ -22,7 +22,7 @@ import 'package:retip/core/utils/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class AlbumPage extends StatefulWidget {
-  final AlbumEntity album;
+  final AlbumEntityBack album;
 
   const AlbumPage({
     required this.album,

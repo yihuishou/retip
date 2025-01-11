@@ -5,12 +5,13 @@ import 'package:retip/app/data/models/artist_model.dart';
 import 'package:retip/app/data/models/track_model.dart';
 import 'package:retip/app/data/providers/on_audio_query_provider.dart';
 import 'package:retip/app/data/providers/shared_preferences_provider.dart';
-import 'package:retip/app/domain/entities/album_entity.dart';
-import 'package:retip/app/domain/entities/artist_entity.dart';
+import 'package:retip/app/domain/entities/album_entity_back.dart';
+import 'package:retip/app/domain/entities/artist_entity_back.dart';
 import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
-import 'package:retip/objectbox.g.dart';
 
+import '../../../objectbox.g.dart';
+import '../models/album.dart';
 import '../models/track.dart';
 import '../providers/objectbox_provider.dart';
 
@@ -26,8 +27,8 @@ class LibraryRepositoryImplementation implements LibraryRepository {
   });
 
   @override
-  Future<List<AlbumEntity>> getAllAlbums() async {
-    final result = <AlbumEntity>[];
+  Future<List<AlbumEntityBack>> getAllAlbums() async {
+    final result = <AlbumEntityBack>[];
 
     final albums = await onAudioQueryProvider.getAllAlbums();
     final tracks = await onAudioQueryProvider.getAllSongs();
@@ -71,8 +72,8 @@ class LibraryRepositoryImplementation implements LibraryRepository {
   }
 
   @override
-  Future<List<ArtistEntity>> getAllArtists() async {
-    final result = <ArtistEntity>[];
+  Future<List<ArtistEntityBack>> getAllArtists() async {
+    final result = <ArtistEntityBack>[];
 
     // Fetch all raw data
     final artists = await onAudioQueryProvider.getAllArtists();
@@ -176,40 +177,40 @@ class LibraryRepositoryImplementation implements LibraryRepository {
 
       tracks.add(TrackModel.fromSongModel(track, artwork));
 
-      if (track.uri != null) {
-        final box = objectboxProvider.trackBox;
+      // TODO remove this
+      // if (track.uri != null) {
+      //   final box = objectboxProvider.trackBox;
 
-        final entity = await box
-            .query(Track_.path.equals(track.uri!))
-            .build()
-            .findFirstAsync();
+      //   final entity = await box
+      //       .query(Track_.path.equals(track.uri!))
+      //       .build()
+      //       .findFirstAsync();
 
-        if (entity == null) {
-          box.put(
-            Track(
-              title: track.title,
-              artist: track.artist!,
-              album: track.album!,
-              path: track.uri!,
-              extra: track.genre ?? '',
-            ),
-          );
-        }
-      }
+      //   if (entity == null) {
+      //     box.put(
+      //       Track(
+      //         albumId: track.albumId ?? 0,
+      //         artistId: track.artistId ?? 0,
+      //         title: track.title,
+      //         path: track.uri!,
+      //       ),
+      //     );
+      //   }
+      // }
     }
 
     return tracks;
   }
 
   @override
-  Future<AlbumEntity> getAlbum(int id) async {
+  Future<AlbumEntityBack> getAlbum(int id) async {
     final albums = await getAllAlbums();
 
     return albums.firstWhere((album) => album.id == id);
   }
 
   @override
-  Future<ArtistEntity> getArtist(int id) async {
+  Future<ArtistEntityBack> getArtist(int id) async {
     final artists = await getAllArtists();
     return artists.firstWhere((artist) => artist.id == id);
   }
@@ -218,5 +219,37 @@ class LibraryRepositoryImplementation implements LibraryRepository {
   Future<TrackEntityBack> getTrack(int id) {
     // TODO: implement getTrack
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> scan() async {
+    final albumsBox = objectboxProvider.albumsBox;
+
+    final albums = await onAudioQueryProvider.getAllAlbums();
+
+    for (final album in albums) {
+      Album? albumEntity = await albumsBox
+          .query(Album_.mediaId.equals(album.id))
+          .build()
+          .findFirstAsync();
+
+      if (albumEntity == null) {
+        final tracks = await onAudioQueryProvider.getAlbumSongs(album.id);
+
+        // Add album if not exists
+        final entity = Album(
+          title: album.album,
+          mediaId: album.id,
+        );
+
+        entity.tracks.addAll(tracks.map((e) => Track(
+              artistId: e.artistId ?? 0,
+              title: e.title,
+              path: e.uri ?? '',
+            )));
+
+        albumsBox.put(entity);
+      }
+    }
   }
 }

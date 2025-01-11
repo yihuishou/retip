@@ -1,6 +1,7 @@
 import 'package:objectbox/objectbox.dart';
 
 import '../../domain/entities/track_entity.dart';
+import 'album.dart';
 
 @Entity()
 class Track implements TrackEntity {
@@ -8,35 +9,24 @@ class Track implements TrackEntity {
   @override
   int id;
 
-  final String _title;
-  final String _artist;
-  final String _album;
-  final String _path;
+  final albumEntity = ToOne<Album>();
 
   Track({
     this.id = 0,
-    required String title,
-    required String artist,
-    required String album,
-    required String path,
-    required this.extra,
-  })  : _title = title,
-        _artist = artist,
-        _album = album,
-        _path = path;
+    required this.artistId,
+    required this.title,
+    required this.path,
+  });
 
   @override
-  String get album => _album;
+  int artistId;
 
   @override
-  String get artist => _artist;
+  String path;
 
   @override
-  String get title => _title;
+  String title;
 
   @override
-  String get path => _path;
-
-  @override
-  String extra;
+  int get albumId => albumEntity.targetId;
 }

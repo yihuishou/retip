@@ -69,6 +69,8 @@ class IntroBloc extends Bloc<IntroEvent, IntroState> {
           progress: i / tracks.length, filename: track.fileLocation));
     }
 
+    repo.scan();
+
     emit(IntroLibraryScanned());
   }
 }

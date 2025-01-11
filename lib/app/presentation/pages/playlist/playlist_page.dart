@@ -4,7 +4,7 @@ import 'package:retip/app/domain/cases/favourites/is_in_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/remove_from_favourites.dart';
 import 'package:retip/app/domain/cases/play_audio.dart';
 import 'package:retip/app/domain/cases/playlist/read_playlist.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:retip/app/presentation/widgets/buttons/favourite_button.dart';
 import 'package:retip/app/presentation/widgets/buttons/play_button.dart';
 import 'package:retip/app/presentation/widgets/buttons/rp_back_button.dart';
@@ -25,7 +25,7 @@ import 'package:retip/core/utils/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class PlaylistPage extends StatefulWidget {
-  final PlaylistEntity playlist;
+  final PlaylistEntityBack playlist;
 
   const PlaylistPage({
     required this.playlist,
@@ -37,7 +37,7 @@ class PlaylistPage extends StatefulWidget {
 }
 
 class _PlaylistPageState extends State<PlaylistPage> {
-  late PlaylistEntity playlist;
+  late PlaylistEntityBack playlist;
   Duration duration = Duration.zero;
 
   @override

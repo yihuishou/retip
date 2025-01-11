@@ -2,9 +2,9 @@ import 'dart:typed_data';
 
 import 'package:on_audio_query/on_audio_query.dart' as on_audio_query;
 import 'package:retip/app/data/models/track_model.dart';
-import 'package:retip/app/domain/entities/album_entity.dart';
+import 'package:retip/app/domain/entities/album_entity_back.dart';
 
-class AlbumModel extends AlbumEntity {
+class AlbumModel extends AlbumEntityBack {
   AlbumModel._({
     required super.id,
     required super.title,

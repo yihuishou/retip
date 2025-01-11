@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:retip/app/domain/cases/favourites/get_all_favourites.dart';
 import 'package:retip/app/domain/cases/get_all_albums.dart';
-import 'package:retip/app/domain/entities/album_entity.dart';
+import 'package:retip/app/domain/entities/album_entity_back.dart';
 import 'package:retip/app/presentation/pages/album/album_page.dart';
 import 'package:retip/app/presentation/views/settings/cubit/settings_cubit.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
@@ -13,7 +13,7 @@ import 'package:retip/core/l10n/retip_l10n.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class AlbumsView extends StatefulWidget {
-  final List<AlbumEntity> albums;
+  final List<AlbumEntityBack> albums;
 
   const AlbumsView({
     this.albums = const [],
@@ -25,7 +25,7 @@ class AlbumsView extends StatefulWidget {
 }
 
 class _AlbumsViewState extends State<AlbumsView> {
-  static Future<List<AlbumEntity>> future = GetAllAlbums.call();
+  static Future<List<AlbumEntityBack>> future = GetAllAlbums.call();
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +90,8 @@ class _AlbumsViewState extends State<AlbumsView> {
                   );
 
                   if (widget.albums.isNotEmpty) {
-                    final data =
-                        await GetAllFavourites.call<AlbumEntity>('AlbumModel');
+                    final data = await GetAllFavourites.call<AlbumEntityBack>(
+                        'AlbumModel');
 
                     if (data.isEmpty && context.mounted) {
                       Navigator.of(context).pop();

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:retip/app/domain/cases/playlist/update_playlist.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:retip/app/presentation/widgets/more/more_tile.dart';
 import 'package:retip/app/presentation/widgets/spacer.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class RenamePlaylistTile extends StatelessWidget {
-  final PlaylistEntity entity;
+  final PlaylistEntityBack entity;
   final VoidCallback? onTap;
 
   const RenamePlaylistTile(

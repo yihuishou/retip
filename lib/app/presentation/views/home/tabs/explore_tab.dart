@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:retip/app/domain/cases/favourites/get_all_favourites.dart';
 import 'package:retip/app/domain/cases/play_audio.dart';
 import 'package:retip/app/domain/entities/abstract_entity.dart';
-import 'package:retip/app/domain/entities/album_entity.dart';
-import 'package:retip/app/domain/entities/artist_entity.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/album_entity_back.dart';
+import 'package:retip/app/domain/entities/artist_entity_back.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/pages/album/album_page.dart';
 import 'package:retip/app/presentation/pages/artist/artist_page.dart';
@@ -78,9 +78,11 @@ class _ExploreTabState extends State<ExploreTab> {
 
         // Check if playlist has changed
         if (hasChanged == false) {
-          final playlists = List<PlaylistEntity>.from(snapshot.requireData[3]);
+          final playlists =
+              List<PlaylistEntityBack>.from(snapshot.requireData[3]);
           for (int i = 0; i < playlists.length; i++) {
-            final oldPlaylist = List<PlaylistEntity>.from(initialData[3])[i];
+            final oldPlaylist =
+                List<PlaylistEntityBack>.from(initialData[3])[i];
             final newPlaylist = playlists[i];
 
             if (oldPlaylist.tracks.length != newPlaylist.tracks.length) {
@@ -94,13 +96,13 @@ class _ExploreTabState extends State<ExploreTab> {
           initialData = snapshot.requireData;
         }
 
-        final artists = List<ArtistEntity>.from(
+        final artists = List<ArtistEntityBack>.from(
             hasChanged ? snapshot.requireData[0] : initialData[0]);
-        final albums = List<AlbumEntity>.from(
+        final albums = List<AlbumEntityBack>.from(
             hasChanged ? snapshot.requireData[1] : initialData[1]);
         final tracks = List<TrackEntityBack>.from(
             hasChanged ? snapshot.requireData[2] : initialData[2]);
-        final playlists = List<PlaylistEntity>.from(
+        final playlists = List<PlaylistEntityBack>.from(
             hasChanged ? snapshot.requireData[3] : initialData[3]);
 
         final size = MediaQuery.of(context).size.width;

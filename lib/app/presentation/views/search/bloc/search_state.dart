@@ -8,9 +8,9 @@ final class SearchIdleState extends SearchState {}
 final class SearchSearchingState extends SearchState {}
 
 final class SearchSuccessState extends SearchState {
-  final List<ArtistEntity> artists;
-  final List<AlbumEntity> albums;
-  final List<PlaylistEntity> playlists;
+  final List<ArtistEntityBack> artists;
+  final List<AlbumEntityBack> albums;
+  final List<PlaylistEntityBack> playlists;
   final List<TrackEntityBack> tracks;
 
   final String query;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:retip/app/domain/cases/favourites/get_all_favourites.dart';
 import 'package:retip/app/domain/cases/playlist/get_all_playlists.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:retip/app/presentation/pages/favourites/favourites_page.dart';
 import 'package:retip/app/presentation/pages/playlist/playlist_page.dart';
 import 'package:retip/app/presentation/views/settings/cubit/settings_cubit.dart';
@@ -14,7 +14,7 @@ import 'package:retip/core/l10n/retip_l10n.dart';
 import 'package:retip/core/utils/sizer.dart';
 
 class PlaylistsView extends StatefulWidget {
-  final List<PlaylistEntity> playlists;
+  final List<PlaylistEntityBack> playlists;
 
   const PlaylistsView({
     this.playlists = const [],
@@ -26,7 +26,7 @@ class PlaylistsView extends StatefulWidget {
 }
 
 class _PlaylistsViewState extends State<PlaylistsView> {
-  static List<PlaylistEntity> playlists = [];
+  static List<PlaylistEntityBack> playlists = [];
 
   @override
   Widget build(BuildContext context) {
@@ -93,13 +93,13 @@ class _PlaylistsViewState extends State<PlaylistsView> {
                 ? widget.playlists.length
                 : data.length + 1,
             itemBuilder: (context, index) {
-              late final PlaylistEntity playlist;
+              late final PlaylistEntityBack playlist;
 
               if (widget.playlists.isNotEmpty) {
                 playlist = widget.playlists[index];
               } else {
                 playlist = index == 0
-                    ? PlaylistEntity(
+                    ? PlaylistEntityBack(
                         id: 0,
                         name: RetipL10n.of(context).favourites,
                       )
@@ -119,8 +119,9 @@ class _PlaylistsViewState extends State<PlaylistsView> {
                   );
 
                   if (widget.playlists.isNotEmpty) {
-                    final data = await GetAllFavourites.call<PlaylistEntity>(
-                        'PlaylistEntity');
+                    final data =
+                        await GetAllFavourites.call<PlaylistEntityBack>(
+                            'PlaylistEntity');
 
                     if (data.isEmpty && context.mounted) {
                       Navigator.of(context).pop();

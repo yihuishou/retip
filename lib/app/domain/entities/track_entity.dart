@@ -1,15 +1,17 @@
-abstract class TrackEntity extends AbstractEntity {
-  TrackEntity({required super.extra});
+abstract class TrackEntity {
+  // Ids
+  int id;
+  int get albumId;
+  int artistId;
 
-  int get id;
-  String get title;
-  String get artist;
-  String get album;
-  String get path;
-}
+  // Fields
+  String title;
+  String path;
 
-abstract class AbstractEntity {
-  String extra;
-
-  AbstractEntity({required this.extra});
+  TrackEntity({
+    required this.id,
+    required this.artistId,
+    required this.title,
+    required this.path,
+  });
 }

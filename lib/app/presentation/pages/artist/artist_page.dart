@@ -5,7 +5,7 @@ import 'package:retip/app/domain/cases/favourites/add_to_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/is_in_favourites.dart';
 import 'package:retip/app/domain/cases/favourites/remove_from_favourites.dart';
 import 'package:retip/app/domain/cases/play_audio.dart';
-import 'package:retip/app/domain/entities/artist_entity.dart';
+import 'package:retip/app/domain/entities/artist_entity_back.dart';
 import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/pages/album/album_page.dart';
 import 'package:retip/app/presentation/views/albums/albums_view.dart';
@@ -29,7 +29,7 @@ import 'package:retip/core/utils/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ArtistPage extends StatefulWidget {
-  final ArtistEntity artist;
+  final ArtistEntityBack artist;
 
   const ArtistPage({
     required this.artist,

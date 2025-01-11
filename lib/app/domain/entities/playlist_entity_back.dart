@@ -11,11 +11,11 @@ import 'package:retip/core/l10n/retip_l10n.dart';
 import 'package:retip/core/utils/sizer.dart';
 import 'package:retip/core/utils/utils.dart';
 
-class PlaylistEntity extends AbstractEntity {
+class PlaylistEntityBack extends AbstractEntity {
   String name;
   List<TrackEntityBack> tracks;
 
-  PlaylistEntity({
+  PlaylistEntityBack({
     required super.id,
     required this.name,
     this.tracks = const [],

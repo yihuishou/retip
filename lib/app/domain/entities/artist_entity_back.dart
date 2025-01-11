@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:retip/app/presentation/pages/album/album_page.dart';
+import 'package:retip/app/presentation/pages/artist/artist_page.dart';
 import 'package:retip/app/presentation/widgets/artwork_widget.dart';
 import 'package:retip/app/presentation/widgets/rp_list_tile.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
@@ -9,61 +9,64 @@ import 'package:retip/core/utils/sizer.dart';
 import 'package:retip/core/utils/utils.dart';
 
 import 'abstract_entity.dart';
-import 'track_entity_back.dart';
+import 'album_entity_back.dart';
 
-abstract class AlbumEntity extends AbstractEntity {
-  final String title;
+abstract class ArtistEntityBack extends AbstractEntity {
+  final String name;
   final Uint8List? artwork;
-  final String? year;
+  final List<AlbumEntityBack> albums;
 
-  final List<TrackEntityBack> tracks;
-  final String artist;
-  final int? artistId;
-
-  AlbumEntity({
+  ArtistEntityBack({
     required super.id,
-    required this.title,
-    required this.artist,
-    this.artistId,
+    required this.name,
     required this.artwork,
-    required this.tracks,
-    this.year,
+    required this.albums,
   });
 
   @override
   String toString() {
-    return title;
+    return name;
   }
 
   @override
   String toTypeString(BuildContext context) {
-    return RetipL10n.of(context).albums;
+    return RetipL10n.of(context).artists;
   }
 
   @override
   RpListTile toListTile(BuildContext context, [String? query]) {
     final theme = Theme.of(context);
 
+    int tracksLength = 0;
+
+    for (final album in albums) {
+      tracksLength += album.tracks.length;
+    }
+
     return RpListTile(
       leading: Container(
         width: Sizer.x5,
         height: Sizer.x5,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Sizer.x0_5),
+          borderRadius: BorderRadius.circular(Sizer.max),
           color: theme.colorScheme.surfaceBright,
         ),
         child: ArtworkWidget(
+          style: ArtworkStyle.circle,
           bytes: artwork,
           borderWidth: 0,
         ),
       ),
-      title: RetipUtils.getQueryText(context, title, query ?? ''),
-      subtitle: Text(artist),
+      title: RetipUtils.getQueryText(context, name, query ?? ''),
+      subtitle: Text(
+          '${RetipL10n.of(context).albumsCount(albums.length)} - ${RetipL10n.of(context).tracksCount(tracksLength)}'),
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return AlbumPage(album: this);
+              return ArtistPage(
+                artist: this,
+              );
             },
           ),
         );

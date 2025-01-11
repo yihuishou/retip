@@ -29,7 +29,7 @@ class OnAudioQueryProvider {
     return await _onAudioQuery.queryAudiosFrom(
       orderType: OrderType.ASC_OR_SMALLER,
       sortType: SongSortType.TITLE,
-      AudiosFromType.GENRE_ID,
+      type,
       id,
     );
   }

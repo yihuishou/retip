@@ -1,10 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:retip/app/domain/cases/get_all_tracks.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 mixin ReadPlaylist {
-  static Future<PlaylistEntity?> call(String key) async {
+  static Future<PlaylistEntityBack?> call(String key) async {
     final prefs = GetIt.I.get<SharedPreferences>();
 
     final trackIds = prefs.getStringList(key);
@@ -17,7 +17,7 @@ mixin ReadPlaylist {
         .where((track) => trackIds.contains(track.id.toString()))
         .toList();
 
-    return PlaylistEntity(
+    return PlaylistEntityBack(
       id: int.parse(key.split('_')[1]),
       name: trackIds.first,
       tracks: tracks,

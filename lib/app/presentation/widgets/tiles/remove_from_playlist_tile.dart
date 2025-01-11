@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retip/app/domain/cases/playlist/update_playlist.dart';
-import 'package:retip/app/domain/entities/playlist_entity.dart';
+import 'package:retip/app/domain/entities/playlist_entity_back.dart';
 import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/presentation/widgets/more/more_tile.dart';
 import 'package:retip/app/presentation/widgets/rp_snackbar.dart';
@@ -8,7 +8,7 @@ import 'package:retip/core/l10n/retip_l10n.dart';
 
 class RemoveFromPlaylistTile extends StatelessWidget {
   final TrackEntityBack track;
-  final PlaylistEntity playlist;
+  final PlaylistEntityBack playlist;
   final VoidCallback? onTap;
 
   const RemoveFromPlaylistTile({
