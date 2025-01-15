@@ -10,9 +10,7 @@ import 'package:retip/app/domain/entities/artist_entity_back.dart';
 import 'package:retip/app/domain/entities/track_entity_back.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
 
-import '../../../objectbox.g.dart';
-import '../models/album.dart';
-import '../models/track.dart';
+import '../../domain/entities/test_entity.dart';
 import '../providers/objectbox_provider.dart';
 
 class LibraryRepositoryImplementation implements LibraryRepository {
@@ -223,33 +221,46 @@ class LibraryRepositoryImplementation implements LibraryRepository {
 
   @override
   Future<void> scan() async {
+    final tracksBox = objectboxProvider.tracksBox;
     final albumsBox = objectboxProvider.albumsBox;
+    final artistsBox = objectboxProvider.artistsBox;
 
-    final albums = await onAudioQueryProvider.getAllAlbums();
+    // Clear all data
+    tracksBox.removeAll();
+    albumsBox.removeAll();
+    artistsBox.removeAll();
 
-    for (final album in albums) {
-      Album? albumEntity = await albumsBox
-          .query(Album_.mediaId.equals(album.id))
-          .build()
-          .findFirstAsync();
+    final artists = await onAudioQueryProvider.getAllArtists();
 
-      if (albumEntity == null) {
-        final tracks = await onAudioQueryProvider.getAlbumSongs(album.id);
+    for (final artist in artists) {
+      final artistEntity = ArtistObx(
+        name: artist.artist,
+      );
 
-        // Add album if not exists
-        final entity = Album(
+      final albums = await onAudioQueryProvider.getArtistAlbums(artist.id);
+      final albumEntities = <AlbumObx>[];
+      for (final album in albums) {
+        final albumEntity = AlbumObx(
           title: album.album,
-          mediaId: album.id,
         );
 
-        entity.tracks.addAll(tracks.map((e) => Track(
-              artistId: e.artistId ?? 0,
-              title: e.title,
-              path: e.uri ?? '',
-            )));
+        final tracks = await onAudioQueryProvider.getAlbumSongs(album.id);
+        final trackEntities = <TrackObx>[];
+        for (final track in tracks) {
+          final trackEntity = TrackObx(
+            title: track.title,
+            location: track.uri!,
+            duration: track.duration!,
+            size: track.size,
+          );
 
-        albumsBox.put(entity);
+          trackEntities.add(trackEntity);
+        }
+        albumEntity.tracks = trackEntities;
+        albumEntities.add(albumEntity);
       }
+      artistEntity.albums = albumEntities;
+      artistsBox.put(artistEntity);
     }
   }
 }

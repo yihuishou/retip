@@ -61,9 +61,12 @@ class OnAudioQueryProvider {
     required dynamic args,
   }) async {
     final data = await _onAudioQuery.queryWithFilters(query, type, args: args);
-    final List<T> result = List.from(data);
 
-    return result;
+    if (type == WithFiltersType.ALBUMS) {
+      return data.map((e) => AlbumModel(e)).toList() as List<T>;
+    } else {
+      throw UnimplementedError();
+    }
   }
 
 // === SONGS ===================================================================
