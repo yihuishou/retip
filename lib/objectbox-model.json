@@ -18,15 +18,21 @@
       "relations": []
     }
   ],
-  "lastEntityId": "1:2951011787442105249",
+  "lastEntityId": "2:6658138855186160358",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    6658138855186160358
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    7247674376379392962,
+    7494112198762287955,
+    3959269508423449683
+  ],
   "retiredRelationUids": [],
   "version": 1
 }
