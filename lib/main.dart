@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:retip/app/data/providers/just_audio_provider.dart';
 import 'package:retip/app/data/providers/on_audio_query_provider.dart';
 import 'package:retip/app/data/providers/shared_preferences_provider.dart';
@@ -14,6 +16,8 @@ import 'package:retip/app/domain/repositories/audio_repository.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
 import 'package:retip/app/data/providers/retip_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'objectbox.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +34,14 @@ void main() async {
     androidStopForegroundOnPause: true,
     androidNotificationOngoing: true,
   );
+
+  final appDir = await getApplicationDocumentsDirectory();
+  final store = await openStore(directory: join(appDir.path, 'objectbox'));
+  GetIt.I.registerSingleton(store);
+
+  if (Admin.isAvailable()) {
+    GetIt.I.registerSingleton(Admin(store));
+  }
 
   // Setup the dependency injection
   final sharedPrefs = await SharedPreferences.getInstance();
