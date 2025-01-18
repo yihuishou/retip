@@ -4,44 +4,59 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:9183882176476497563",
-      "lastPropertyId": "5:7167882642892263408",
+      "id": "1:9110736318154050764",
+      "lastPropertyId": "8:6639291023912197190",
       "name": "Track",
       "properties": [
         {
-          "id": "1:4947598931298462286",
+          "id": "1:8493480434753270448",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:6058740071796780446",
+          "id": "2:4911386374828609698",
           "name": "title",
           "type": 9
         },
         {
-          "id": "3:8144104988516767161",
+          "id": "3:5960699938307441549",
           "name": "album",
           "type": 9
         },
         {
-          "id": "4:3664037681753971406",
+          "id": "4:3904495888682430371",
           "name": "artist",
           "type": 9
         },
         {
-          "id": "5:7167882642892263408",
+          "id": "5:8209774950313351470",
           "name": "location",
           "type": 9,
           "flags": 2080,
-          "indexId": "1:3574602105055477754"
+          "indexId": "1:2220850294211809821"
+        },
+        {
+          "id": "6:889010181890131622",
+          "name": "index",
+          "type": 6
+        },
+        {
+          "id": "7:7415888509546711887",
+          "name": "artwork",
+          "type": 9
+        },
+        {
+          "id": "8:6639291023912197190",
+          "name": "isFavorite",
+          "type": 1
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:9183882176476497563",
-  "lastIndexId": "1:3574602105055477754",
+  "lastEntityId": "1:9110736318154050764",
+  "lastIndexId": "1:2220850294211809821",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,

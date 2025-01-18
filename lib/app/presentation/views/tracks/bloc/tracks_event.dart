@@ -5,10 +5,16 @@ sealed class TracksEvent {
   const TracksEvent();
 }
 
-class FetchTracksEvent extends TracksEvent {}
+class FetchTracksEvent extends TracksEvent {
+  final List<Track>? tracks;
+
+  const FetchTracksEvent({
+    this.tracks,
+  });
+}
 
 class SortTracksEvent extends TracksEvent {
-  final List<TrackEntity>? tracks;
+  final List<Track>? tracks;
   final SortType sortType;
 
   const SortTracksEvent({

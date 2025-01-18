@@ -44,7 +44,7 @@ class RetipApp extends StatelessWidget {
             );
           }),
           BlocProvider(create: (_) {
-            return TracksBloc()..add(FetchTracksEvent());
+            return TracksBloc()..add(const FetchTracksEvent());
           }),
           BlocProvider(create: (_) => LibraryBloc()),
           BlocProvider(create: (_) => FavouritesBloc()),

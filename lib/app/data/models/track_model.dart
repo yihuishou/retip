@@ -15,6 +15,9 @@ class Track {
   String artist;
   @Unique()
   String location;
+  int index;
+  String? artwork;
+  bool isFavorite;
 
   Track({
     this.id = 0,
@@ -22,6 +25,9 @@ class Track {
     required this.album,
     required this.artist,
     required this.location,
+    required this.index,
+    this.artwork,
+    this.isFavorite = false,
   });
 }
 

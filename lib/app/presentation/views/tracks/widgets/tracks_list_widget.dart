@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
-import 'package:retip/app/presentation/widgets/artwork_widget.dart';
+import 'package:get_it/get_it.dart';
+import 'package:objectbox/objectbox.dart';
+import 'package:retip/app/data/providers/objectbox_provider.dart';
 import 'package:retip/app/presentation/widgets/rp_icon_button.dart';
 import 'package:retip/app/presentation/widgets/rp_list_tile.dart';
 import 'package:retip/app/presentation/widgets/rp_text.dart';
 import 'package:retip/core/utils/sizer.dart';
 
+import '../../../../data/models/track_model.dart';
+
 class TracksListWidget extends StatelessWidget {
-  final List<TrackEntity> tracks;
+  final List<Track> tracks;
   final void Function(int index)? onTap;
 
   const TracksListWidget({
@@ -30,15 +35,30 @@ class TracksListWidget extends StatelessWidget {
         return RpListTile(
           leading: SizedBox.square(
             dimension: Sizer.x5,
-            child: ArtworkWidget(
-              bytes: track.artwork,
-              borderWidth: 1,
-            ),
+            child: track.artwork != null
+                ? Image.file(File(track.artwork!))
+                : const Icon(Icons.music_note),
+            // child: ArtworkWidget(
+            //   bytes: null,
+            //   borderWidth: 1,
+            // ),
           ),
           title: RpText(track.title),
-          subtitle: RpText(track.artist),
-          onTap: () => onTap?.call(index),
-          trailing: const RpIconButton(icon: Icons.more_vert),
+          subtitle: RpText('${track.artist} • ${track.album}'),
+          onTap: () {
+            track.isFavorite = !track.isFavorite;
+            final store = GetIt.I.get<Store>();
+            final ob = ObjectboxProvider<Track>(store);
+            ob.update(track);
+            onTap?.call(index);
+          },
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(track.isFavorite ? Icons.favorite : Icons.favorite_outline),
+              const RpIconButton(icon: Icons.more_vert),
+            ],
+          ),
         );
       },
     );

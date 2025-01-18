@@ -214,16 +214,26 @@ class LibraryRepositoryImplementation implements LibraryRepository {
         Track_.location.equals(song.uri!),
       );
 
-      if (entity != null) continue;
+      if (entity != null) {
+        // continue;
+        final artwork =
+            await _fileProvider.getFilePath('album_${song.albumId}');
 
-      final track = Track(
-        title: song.title,
-        album: song.album ?? '',
-        artist: song.artist ?? '',
-        location: song.uri!,
-      );
+        if (artwork != null) {
+          entity.artwork = artwork;
+          _objectboxProvider.update(entity);
+        }
+      } else {
+        final track = Track(
+          title: song.title,
+          album: song.album ?? '',
+          artist: song.artist ?? '',
+          location: song.uri!,
+          index: song.track ?? 0,
+        );
 
-      _objectboxProvider.insert(track);
+        _objectboxProvider.insert(track);
+      }
     }
   }
 }
