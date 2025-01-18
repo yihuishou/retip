@@ -11,16 +11,22 @@ import 'package:retip/app/domain/entities/artist_entity.dart';
 import 'package:retip/app/domain/entities/track_entity.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
 
+import '../../../objectbox.g.dart';
+import '../providers/objectbox_provider.dart';
+
 class LibraryRepositoryImplementation implements LibraryRepository {
   final OnAudioQueryProvider onAudioQueryProvider;
   final SharedPreferencesProvider sharedPreferencesProvider;
   final FileProvider _fileProvider;
+  final ObjectboxProvider<Track> _objectboxProvider;
 
   LibraryRepositoryImplementation({
     required this.onAudioQueryProvider,
     required this.sharedPreferencesProvider,
+    required ObjectboxProvider<Track> objectboxProvider,
     FileProvider? fileProvider,
-  }) : _fileProvider = fileProvider ?? FileProvider();
+  })  : _fileProvider = fileProvider ?? FileProvider(),
+        _objectboxProvider = objectboxProvider;
 
   @override
   Future<List<AlbumEntity>> getAllAlbums() async {
@@ -195,5 +201,29 @@ class LibraryRepositoryImplementation implements LibraryRepository {
   Future<TrackEntity> getTrack(int id) {
     // TODO: implement getTrack
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> scan() async {
+    final songs = await onAudioQueryProvider.getAllSongs();
+
+    for (final song in songs) {
+      if (song.uri == null) continue;
+
+      final entity = await _objectboxProvider.findFirst(
+        Track_.location.equals(song.uri!),
+      );
+
+      if (entity != null) continue;
+
+      final track = Track(
+        title: song.title,
+        album: song.album ?? '',
+        artist: song.artist ?? '',
+        location: song.uri!,
+      );
+
+      _objectboxProvider.insert(track);
+    }
   }
 }

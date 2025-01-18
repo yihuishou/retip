@@ -10,8 +10,18 @@ class Track {
   @Id()
   int id;
 
+  String title;
+  String album;
+  String artist;
+  @Unique()
+  String location;
+
   Track({
     this.id = 0,
+    required this.title,
+    required this.album,
+    required this.artist,
+    required this.location,
   });
 }
 

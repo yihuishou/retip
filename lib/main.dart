@@ -10,7 +10,9 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'app/data/models/track_model.dart';
 import 'app/data/providers/just_audio_provider.dart';
+import 'app/data/providers/objectbox_provider.dart';
 import 'app/data/providers/on_audio_query_provider.dart';
 import 'app/data/providers/retip_audio.dart';
 import 'app/data/providers/shared_preferences_provider.dart';
@@ -58,6 +60,7 @@ void main() async {
     LibraryRepositoryImplementation(
       onAudioQueryProvider: OnAudioQueryProvider(),
       sharedPreferencesProvider: sharedPrefsProvider,
+      objectboxProvider: ObjectboxProvider<Track>(GetIt.I.get<Store>()),
     ),
   );
 

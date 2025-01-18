@@ -49,6 +49,7 @@ class IntroBloc extends Bloc<IntroEvent, IntroState> {
 
     final repo = GetIt.I.get<LibraryRepository>();
 
+    repo.scan();
     final tracks = await repo.getAllTracks();
     final provider = FileProvider();
 
