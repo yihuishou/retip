@@ -1,8 +1,19 @@
 import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:retip/app/domain/entities/track_entity.dart';
+
+@Entity()
+class Track {
+  @Id()
+  int id;
+
+  Track({
+    this.id = 0,
+  });
+}
 
 class TrackModel extends TrackEntity {
   TrackModel._({
