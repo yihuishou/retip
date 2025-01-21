@@ -17,6 +17,16 @@ import 'package:retip/core/utils/utils.dart';
 
 import 'abstract_entity.dart';
 
+abstract class Track {
+  final int id;
+  final String title;
+
+  Track({
+    required this.id,
+    required this.title,
+  });
+}
+
 abstract class TrackEntity extends AbstractEntity {
   final int? albumId;
   final String title;
