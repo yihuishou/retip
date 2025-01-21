@@ -43,6 +43,8 @@ dependencies:
   just_audio: ^0.9.40
   just_audio_background: ^0.0.1-beta.13
   meta: ^1.15.0
+  objectbox: ^4.0.3
+  objectbox_flutter_libs: ^4.0.3
   on_audio_query:
     git:
       url: https://github.com/rozpo/on_audio_query
@@ -62,15 +64,11 @@ dependencies:
 #     path: ../on_audio_query/packages/on_audio_query
 
 dev_dependencies:
+  build_runner: ^2.4.14
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  objectbox_generator: ^4.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
