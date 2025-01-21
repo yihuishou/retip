@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../core/utils/sizer.dart';
 
 class ArtworkWidget extends StatelessWidget {
-  final String path;
+  final String? path;
 
   const ArtworkWidget(
     this.path, {
@@ -22,7 +22,7 @@ class ArtworkWidget extends StatelessWidget {
         height: Sizer.x5,
         cacheHeight: 4 * Sizer.x5.toInt(),
         cacheWidth: 4 * Sizer.x5.toInt(),
-        File(path),
+        File(path ?? ''),
         frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
           if (wasSynchronouslyLoaded) {
             return child;

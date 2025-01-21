@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
-import 'package:retip/app/presentation/widgets/rp_icon_button.dart';
+import 'package:retip/app/presentation/widgets/more/more_icon.dart';
 
 import '../../widgets/artwork_widget_new.dart';
 import '../../widgets/rp_list_tile.dart';
@@ -29,13 +27,11 @@ class TracksView extends StatelessWidget {
               final track = snapshot.requireData[index];
 
               return RpListTile(
-                leading: ArtworkWidget(
-                    Random().nextBool() ? track.artwork! : 'null'),
+                leading: ArtworkWidget(track.artwork),
                 title: RpText(track.title),
-                subtitle: RpText(track.artist ?? ''),
-                trailing: RpIconButton(
-                  icon: Icons.more_vert,
-                  onPressed: () {},
+                subtitle: track.artist != null ? RpText(track.artist!) : null,
+                trailing: MoreIcon.vertical(
+                  title: track.title,
                 ),
                 onTap: () {},
               );
