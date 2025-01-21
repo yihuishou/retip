@@ -20,6 +20,8 @@ import 'package:retip/app/domain/repositories/library_repository.dart';
 import 'package:retip/app/retip_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'app/data/models/track_model.dart';
+import 'app/data/providers/objectbox_provider.dart';
 import 'objectbox.g.dart';
 
 void main() async {
@@ -54,6 +56,9 @@ void main() async {
     LibraryRepositoryImplementation(
       onAudioQueryProvider: OnAudioQueryProvider(),
       sharedPreferencesProvider: sharedPrefsProvider,
+      objectboxTrackProvider: ObjectboxProvider<TrackObjectbox>(
+        GetIt.I.get<Store>(),
+      ),
     ),
   );
 
@@ -71,6 +76,7 @@ void main() async {
   // Run application
   runApp(RetipApp(
     audioRepository: GetIt.I.get<AudioRepository>(),
+    libraryRepository: libraryRepository,
     themeRepository: ThemeRepositoryImplementation(
       provider: SharedPreferencesProvider(),
     ),

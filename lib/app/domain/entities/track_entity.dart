@@ -20,10 +20,18 @@ import 'abstract_entity.dart';
 abstract class Track {
   final int id;
   final String title;
+  final String? album;
+  final String? artist;
+  final String location;
+  final String? artwork;
 
   Track({
     required this.id,
     required this.title,
+    this.album,
+    this.artist,
+    required this.location,
+    this.artwork,
   });
 }
 

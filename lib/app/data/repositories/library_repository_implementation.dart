@@ -11,16 +11,22 @@ import 'package:retip/app/domain/entities/artist_entity.dart';
 import 'package:retip/app/domain/entities/track_entity.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
 
+import '../../../objectbox.g.dart';
+import '../providers/objectbox_provider.dart';
+
 class LibraryRepositoryImplementation implements LibraryRepository {
   final OnAudioQueryProvider onAudioQueryProvider;
   final SharedPreferencesProvider sharedPreferencesProvider;
   final FileProvider _fileProvider;
+  final ObjectboxProvider<TrackObjectbox> _objectboxTrackProvider;
 
   LibraryRepositoryImplementation({
     required this.onAudioQueryProvider,
     required this.sharedPreferencesProvider,
     FileProvider? fileProvider,
-  }) : _fileProvider = fileProvider ?? FileProvider();
+    required ObjectboxProvider<TrackObjectbox> objectboxTrackProvider,
+  })  : _fileProvider = fileProvider ?? FileProvider(),
+        _objectboxTrackProvider = objectboxTrackProvider;
 
   @override
   Future<List<AlbumEntity>> getAllAlbums() async {
@@ -195,5 +201,35 @@ class LibraryRepositoryImplementation implements LibraryRepository {
   Future<TrackEntity> getTrack(int id) {
     // TODO: implement getTrack
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> scan() async {
+    final songs = await onAudioQueryProvider.getAllSongs();
+
+    for (final song in songs) {
+      if (song.uri == null) continue;
+
+      final entity = await _objectboxTrackProvider.findFirst(
+        TrackObjectbox_.location.equals(song.uri!),
+      );
+
+      final artwork = await _fileProvider.getFilePath('album_${song.albumId}');
+
+      if (entity != null) {
+        entity.artwork = artwork;
+        _objectboxTrackProvider.update(entity);
+      } else {
+        final track = TrackObjectbox(
+          title: song.title,
+          album: song.album,
+          artist: song.artist,
+          location: song.uri!,
+          artwork: artwork,
+        );
+
+        _objectboxTrackProvider.insert(track);
+      }
+    }
   }
 }

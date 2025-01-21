@@ -13,9 +13,25 @@ class TrackObjectbox implements Track {
   @override
   String title;
 
+  @override
+  String? album;
+
+  @override
+  String? artist;
+
+  @override
+  String location;
+
+  @override
+  String? artwork;
+
   TrackObjectbox({
     this.id = 0,
     required this.title,
+    this.album,
+    this.artist,
+    required this.location,
+    this.artwork,
   });
 }
 

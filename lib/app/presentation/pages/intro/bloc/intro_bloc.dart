@@ -9,7 +9,11 @@ part 'intro_event.dart';
 part 'intro_state.dart';
 
 class IntroBloc extends Bloc<IntroEvent, IntroState> {
-  IntroBloc() : super(IntroIdle()) {
+  final LibraryRepository libraryRepository;
+
+  IntroBloc({
+    required this.libraryRepository,
+  }) : super(IntroIdle()) {
     on<IntroCheckPermissionsEvent>(_checkPermissions);
     on<IntroAskPermissionsEvent>(_askPermissions);
     on<IntroLibraryScanEvent>(_onLibraryScan);
@@ -62,6 +66,8 @@ class IntroBloc extends Bloc<IntroEvent, IntroState> {
       emit(IntroLibraryScanning(
           progress: i / tracks.length, filename: track.fileLocation));
     }
+
+    libraryRepository.scan();
 
     emit(IntroLibraryScanned());
   }

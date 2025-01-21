@@ -2,6 +2,7 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:retip/app/domain/repositories/library_repository.dart';
 import 'package:retip/app/presentation/pages/intro/widgets/intro_library_loading.dart';
 import 'package:retip/app/presentation/widgets/spacer.dart';
 import 'package:retip/core/constants/routes_constants.dart';
@@ -18,7 +19,9 @@ class IntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final IntroBloc introBloc = IntroBloc();
+    final IntroBloc introBloc = IntroBloc(
+      libraryRepository: context.read<LibraryRepository>(),
+    );
 
     return BlocProvider(
       create: (context) => introBloc..add(IntroCheckPermissionsEvent()),

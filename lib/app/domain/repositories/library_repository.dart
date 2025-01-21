@@ -14,4 +14,6 @@ abstract class LibraryRepository {
   Future<AlbumEntity> getAlbum(int id);
 
   Future<ArtistEntity> getArtist(int id);
+
+  Future<void> scan();
 }

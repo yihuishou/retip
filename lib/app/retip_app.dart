@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:retip/app/data/providers/retip_config.dart';
+import 'package:retip/app/domain/repositories/library_repository.dart';
 import 'package:retip/app/presentation/views/library/bloc/library_bloc.dart';
 import 'package:retip/app/presentation/views/tracks/bloc/tracks_bloc.dart';
 import 'package:retip/app/domain/repositories/audio_repository.dart';
@@ -14,11 +15,13 @@ import 'package:retip/core/theme/retip_theme.dart';
 
 class RetipApp extends StatelessWidget {
   final AudioRepository audioRepository;
+  final LibraryRepository libraryRepository;
   final ThemeRepository themeRepository;
 
   const RetipApp({
     required this.audioRepository,
     required this.themeRepository,
+    required this.libraryRepository,
     super.key,
   });
 
@@ -33,6 +36,7 @@ class RetipApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (_) => audioRepository),
+        RepositoryProvider(create: (_) => libraryRepository),
         RepositoryProvider(create: (_) => themeRepository),
       ],
       child: MultiBlocProvider(
