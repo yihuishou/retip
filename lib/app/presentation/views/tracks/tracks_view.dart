@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:retip/app/domain/repositories/library_repository.dart';
 
-import 'bloc/tracks_bloc.dart';
+// import 'bloc/tracks_bloc.dart';
 import 'widgets/tracks_empty_widget.dart';
-import 'widgets/tracks_list_widget.dart';
 
 class TracksView extends StatelessWidget {
   const TracksView({
@@ -12,27 +12,48 @@ class TracksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<TracksBloc>();
+    // final bloc = context.read<TracksBloc>();
 
-    return BlocBuilder<TracksBloc, TracksState>(
-      builder: (context, state) {
-        if (state.tracks.isNotEmpty) {
-          return RefreshIndicator(
-            onRefresh: () async {
-              final stream = bloc.stream.first;
-              bloc.add(FetchTracksEvent());
+    return StreamBuilder(
+      stream: context.read<LibraryRepository>().tracksStream(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: snapshot.requireData.length,
+            itemBuilder: (context, index) {
+              final track = snapshot.requireData[index];
 
-              await stream;
+              return ListTile(
+                title: Text(track.title),
+                subtitle: Text(track.artist ?? ''),
+              );
             },
-            child: TracksListWidget(
-              onTap: (index) => bloc.add(PlayTracksEvent(index: index)),
-              tracks: state.tracks,
-            ),
           );
         }
 
         return const TracksEmptyWidget();
       },
     );
+
+    // return BlocBuilder<TracksBloc, TracksState>(
+    //   builder: (context, state) {
+    //     if (state.tracks.isNotEmpty) {
+    //       return RefreshIndicator(
+    //         onRefresh: () async {
+    //           final stream = bloc.stream.first;
+    //           bloc.add(FetchTracksEvent());
+
+    //           await stream;
+    //         },
+    //         child: TracksListWidget(
+    //           onTap: (index) => bloc.add(PlayTracksEvent(index: index)),
+    //           tracks: state.tracks,
+    //         ),
+    //       );
+    //     }
+
+    //     return const TracksEmptyWidget();
+    //   },
+    // );
   }
 }

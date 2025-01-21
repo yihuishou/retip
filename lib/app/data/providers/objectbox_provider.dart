@@ -34,4 +34,12 @@ class ObjectboxProvider<T> {
   Future<T?> findFirst([Condition<T>? contition]) async {
     return await _box.query(contition).build().findFirstAsync();
   }
+
+  Stream<List<T>> stream([Condition<T>? condition]) {
+    return _box.query(condition).watch(triggerImmediately: true).map(
+      (query) {
+        return query.find();
+      },
+    );
+  }
 }

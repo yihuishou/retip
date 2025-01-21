@@ -8,10 +8,10 @@ import 'package:retip/app/data/providers/on_audio_query_provider.dart';
 import 'package:retip/app/data/providers/shared_preferences_provider.dart';
 import 'package:retip/app/domain/entities/album_entity.dart';
 import 'package:retip/app/domain/entities/artist_entity.dart';
-import 'package:retip/app/domain/entities/track_entity.dart';
 import 'package:retip/app/domain/repositories/library_repository.dart';
 
 import '../../../objectbox.g.dart';
+import '../../domain/entities/track_entity.dart';
 import '../providers/objectbox_provider.dart';
 
 class LibraryRepositoryImplementation implements LibraryRepository {
@@ -231,5 +231,10 @@ class LibraryRepositoryImplementation implements LibraryRepository {
         _objectboxTrackProvider.insert(track);
       }
     }
+  }
+
+  @override
+  Stream<List<Track>> tracksStream() {
+    return _objectboxTrackProvider.stream();
   }
 }

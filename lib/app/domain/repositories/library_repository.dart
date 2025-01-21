@@ -16,4 +16,6 @@ abstract class LibraryRepository {
   Future<ArtistEntity> getArtist(int id);
 
   Future<void> scan();
+
+  Stream<List<Track>> tracksStream();
 }
