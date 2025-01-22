@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../core/l10n/retip_l10n.dart';
 import '../core/router/retip_router.dart';
+import '../core/theme/retip_theme.dart';
 
 class RetipApp extends StatelessWidget {
   final List<Object> repositories;
@@ -15,18 +17,15 @@ class RetipApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: repositories.map((repository) {
-        return RepositoryProvider(create: (_) => repository);
-      }).toList(),
-      child: MultiBlocProvider(
-        providers: blocs.map((bloc) {
-          return BlocProvider(create: (_) => bloc);
-        }).toList(),
-        child: MaterialApp.router(
-          routerConfig: RetipRouter.router,
-        ),
-      ),
+    return MaterialApp.router(
+      localizationsDelegates: RetipL10n.localizationsDelegates,
+      highContrastDarkTheme: RetipTheme.contrastDark,
+      supportedLocales: RetipL10n.supportedLocales,
+      highContrastTheme: RetipTheme.contrastLight,
+      routerConfig: RetipRouter.router,
+      themeMode: ThemeMode.system,
+      darkTheme: RetipTheme.dark,
+      theme: RetipTheme.light,
     );
   }
 }
