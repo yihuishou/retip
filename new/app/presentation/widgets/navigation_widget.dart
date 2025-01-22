@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/l10n/retip_l10n.dart';
 import '../pages/home/cubit/home_cubit.dart';
+import '../views/search/cubit/search_cubit.dart';
 
 class NavigationWidget extends StatelessWidget {
   const NavigationWidget({super.key});
@@ -19,7 +20,16 @@ class NavigationWidget extends StatelessWidget {
           currentIndex: state.index,
           unselectedItemColor: Theme.of(context).colorScheme.onSurface,
           selectedItemColor: Theme.of(context).colorScheme.onSurface,
-          onTap: (value) => cubit.changeIndex(value),
+          onTap: (value) {
+            if (value != state.index) {
+              cubit.changeIndex(value);
+              return;
+            }
+
+            if (value == 2) {
+              context.read<SearchCubit>().focus();
+            }
+          },
           showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(

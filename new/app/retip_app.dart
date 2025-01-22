@@ -5,6 +5,7 @@ import '../core/l10n/retip_l10n.dart';
 import '../core/router/retip_router.dart';
 import '../core/theme/retip_theme.dart';
 import 'presentation/pages/home/cubit/home_cubit.dart';
+import 'presentation/views/search/cubit/search_cubit.dart';
 
 class RetipApp extends StatelessWidget {
   final List<Object> repositories;
@@ -21,6 +22,7 @@ class RetipApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HomeCubit()),
+        BlocProvider(create: (context) => SearchCubit()),
       ],
       child: MaterialApp.router(
         localizationsDelegates: RetipL10n.localizationsDelegates,
