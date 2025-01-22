@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: PageView(
+            physics: const NeverScrollableScrollPhysics(),
             controller: state.controller,
             children: const [
               StartView(),

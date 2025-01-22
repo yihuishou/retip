@@ -17,8 +17,8 @@ class NavigationWidget extends StatelessWidget {
         return BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
           currentIndex: state.index,
-          unselectedItemColor: Theme.of(context).unselectedWidgetColor,
-          selectedItemColor: Theme.of(context).colorScheme.secondary,
+          unselectedItemColor: Theme.of(context).colorScheme.onSurface,
+          selectedItemColor: Theme.of(context).colorScheme.onSurface,
           onTap: (value) => cubit.changeIndex(value),
           showUnselectedLabels: true,
           items: [

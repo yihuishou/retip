@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/presentation/pages/home/home_page.dart';
+import '../../app/presentation/pages/settings/settings_page.dart';
 import '../../app/presentation/widgets/navigation_widget.dart';
 
 mixin RetipRouter {
@@ -12,6 +13,10 @@ mixin RetipRouter {
     navigatorKey: rootNavKey,
     initialLocation: '/',
     routes: [
+      GoRoute(
+        path: '/settings',
+        builder: (context, state) => const SettingsPage(),
+      ),
       ShellRoute(
         navigatorKey: shellNavKey,
         routes: [

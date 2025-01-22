@@ -18,4 +18,10 @@ class HomeCubit extends Cubit<HomeState> {
     }
     emit(state.copyWith(index: index));
   }
+
+  @override
+  Future<void> close() {
+    state.controller.dispose();
+    return super.close();
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/l10n/retip_l10n.dart';
 
@@ -9,8 +10,19 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = RetipL10n.of(context);
 
-    return Center(
-      child: Text(l10n.profile),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.profile),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => context.go('/settings'),
+          ),
+        ],
+      ),
+      body: Center(
+        child: Text(l10n.profile),
+      ),
     );
   }
 }
