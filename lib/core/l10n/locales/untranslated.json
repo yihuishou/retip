@@ -1,6 +1,7 @@
 {
   "pl": [
     "libraryScan",
-    "scanForMusicDescription"
+    "scanForMusicDescription",
+    "profile"
   ]
 }
