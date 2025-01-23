@@ -14,6 +14,20 @@ mixin RetipTheme {
     brightness: Brightness.dark,
     colorSchemeSeed: primaryColor,
     fontFamily: fontFamily,
+    buttonTheme: ButtonThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+      ),
+    ),
   );
 
   static final contrastLight = ThemeData(
