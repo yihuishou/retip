@@ -32,4 +32,8 @@ class LibraryRepository {
     final newEntities = await _objectboxProvider.insertMany(newTracks);
     return newEntities.length;
   }
+
+  Stream<List<TrackModel>> tracksStream() {
+    return _objectboxProvider.stream();
+  }
 }

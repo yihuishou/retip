@@ -8,6 +8,7 @@ import 'library_repository.dart';
 import 'objectbox_provider.dart';
 import 'on_audio_query_provider.dart';
 import 'track_model.dart';
+import 'tracks_view.dart';
 
 class RetipApp extends StatelessWidget {
   const RetipApp({super.key});
@@ -34,7 +35,9 @@ class RetipApp extends StatelessWidget {
             ),
           ),
         ],
-        child: const MaterialApp(),
+        child: const MaterialApp(
+          home: Scaffold(body: TracksView()),
+        ),
       ),
     );
   }

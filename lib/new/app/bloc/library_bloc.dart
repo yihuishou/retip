@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../library_repository.dart';
+import '../track_model.dart';
 
 part 'library_event.dart';
 part 'library_state.dart';
@@ -16,6 +17,7 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
   })  : _libraryRepository = libraryRepository,
         super(LibraryInit()) {
     on<LibraryScanEvent>(onLibraryScan);
+    on<LibraryRefreshEvent>(onLibraryRefresh);
 
     add(LibraryScanEvent());
   }
@@ -26,11 +28,15 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     super.onChange(change);
   }
 
-  void onLibraryScan(LibraryScanEvent event, Emitter<LibraryState> emit) async {
-    emit(LibraryScanningState());
+  void onLibraryScan(LibraryScanEvent event, Emitter<LibraryState> emit) {
+    _libraryRepository.tracksStream().listen((tracks) {
+      add(LibraryRefreshEvent(tracks));
+    });
 
-    await _libraryRepository.scan();
+    _libraryRepository.scan();
+  }
 
-    emit(LibraryIdleState());
+  void onLibraryRefresh(LibraryRefreshEvent event, Emitter<LibraryState> emit) {
+    emit(LibraryIdleState(event.tracks));
   }
 }

@@ -16,4 +16,10 @@ class ObjectboxProvider<T> {
   Future<int> update(T entity) async {
     return await _box.putAsync(entity, mode: PutMode.update);
   }
+
+  Stream<List<T>> stream([Condition<T>? condition]) {
+    return _box.query(condition).watch(triggerImmediately: true).map((query) {
+      return query.find();
+    });
+  }
 }
