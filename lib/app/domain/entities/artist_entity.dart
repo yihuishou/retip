@@ -1,12 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:retip/app/presentation/pages/artist/artist_page.dart';
-import 'package:retip/app/presentation/widgets/artwork_widget.dart';
 import 'package:retip/app/presentation/widgets/rp_list_tile.dart';
-import 'package:retip/core/l10n/retip_l10n.dart';
-import 'package:retip/core/utils/sizer.dart';
-import 'package:retip/core/utils/utils.dart';
 
 import 'abstract_entity.dart';
 import 'album_entity.dart';
@@ -29,48 +24,14 @@ abstract class ArtistEntity extends AbstractEntity {
   }
 
   @override
-  String toTypeString(BuildContext context) {
-    return RetipL10n.of(context).artists;
+  RpListTile toListTile(BuildContext context, [String? query]) {
+    // TODO: implement toListTile
+    throw UnimplementedError();
   }
 
   @override
-  RpListTile toListTile(BuildContext context, [String? query]) {
-    final theme = Theme.of(context);
-
-    int tracksLength = 0;
-
-    for (final album in albums) {
-      tracksLength += album.tracks.length;
-    }
-
-    return RpListTile(
-      leading: Container(
-        width: Sizer.x5,
-        height: Sizer.x5,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Sizer.max),
-          color: theme.colorScheme.surfaceBright,
-        ),
-        child: ArtworkWidget(
-          style: ArtworkStyle.circle,
-          bytes: artwork,
-          borderWidth: 0,
-        ),
-      ),
-      title: RetipUtils.getQueryText(context, name, query ?? ''),
-      subtitle: Text(
-          '${RetipL10n.of(context).albumsCount(albums.length)} - ${RetipL10n.of(context).tracksCount(tracksLength)}'),
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              return ArtistPage(
-                artist: this,
-              );
-            },
-          ),
-        );
-      },
-    );
+  String toTypeString(BuildContext context) {
+    // TODO: implement toTypeString
+    throw UnimplementedError();
   }
 }
