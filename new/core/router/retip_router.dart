@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/presentation/pages/home/home_page.dart';
 import '../../app/presentation/pages/settings/settings_page.dart';
 import '../../app/presentation/widgets/navigation_widget.dart';
+import '../../app/presentation/widgets/player_widget.dart';
 
 mixin RetipRouter {
   static final rootNavKey = GlobalKey<NavigatorState>();
@@ -28,6 +29,7 @@ mixin RetipRouter {
         builder: (context, state, child) {
           return Scaffold(
             body: child,
+            bottomSheet: const PlayerWidget(),
             bottomNavigationBar: const NavigationWidget(),
           );
         },
