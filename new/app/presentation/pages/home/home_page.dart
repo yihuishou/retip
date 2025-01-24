@@ -13,10 +13,10 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            leading: const Icon(Icons.home),
-            title: Text(state.name),
-          ),
+          // appBar: AppBar(
+          //   leading: const Icon(Icons.home),
+          //   title: Text(state.name),
+          // ),
           body: PageView(
             controller: state.controller,
             physics: const NeverScrollableScrollPhysics(),

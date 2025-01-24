@@ -18,6 +18,14 @@ class MediaTileWidget extends StatelessWidget {
       subtitle: const Text('Artist'),
       onLongPress: () {},
       trailing: IconButton(
+        style: ButtonStyle(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
+        ),
         onPressed: () {},
         icon: const Icon(Icons.more_vert),
       ),
