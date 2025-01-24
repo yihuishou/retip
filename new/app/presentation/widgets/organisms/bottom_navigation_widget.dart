@@ -22,7 +22,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     final l10n = RetipL10n.of(context);
 
     final names = [
-      l10n.home,
+      l10n.start,
       l10n.explore,
       l10n.search,
       l10n.library,
@@ -39,7 +39,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         BottomNavigationBarItem(
           icon: const Icon(Icons.home_outlined),
           activeIcon: const Icon(Icons.home),
-          label: l10n.home,
+          label: l10n.start,
         ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.explore_outlined),

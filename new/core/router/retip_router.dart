@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/presentation/pages/home/cubit/home_cubit.dart';
 import '../../app/presentation/pages/home/home_page.dart';
+import '../../app/presentation/pages/player/player_page.dart';
 import '../../app/presentation/widgets/organisms/bottom_mini_player_widget.dart';
 import '../../app/presentation/widgets/organisms/bottom_navigation_widget.dart';
 
@@ -35,6 +36,10 @@ mixin RetipRouter {
             builder: (context, state) => const HomePage(),
           ),
         ],
+      ),
+      GoRoute(
+        path: '/player',
+        builder: (context, state) => const PlayerPage(),
       ),
     ],
   );

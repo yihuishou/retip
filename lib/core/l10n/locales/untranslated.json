@@ -2,6 +2,7 @@
   "pl": [
     "libraryScan",
     "scanForMusicDescription",
-    "profile"
+    "profile",
+    "start"
   ]
 }
