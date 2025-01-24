@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/retip_l10n.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
-  final void Function(int value)? onTap;
+  final void Function(int value, String name)? onTap;
 
   const BottomNavigationWidget({
     this.onTap,
@@ -21,11 +21,19 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   Widget build(BuildContext context) {
     final l10n = RetipL10n.of(context);
 
+    final names = [
+      l10n.home,
+      l10n.explore,
+      l10n.search,
+      l10n.library,
+      l10n.profile,
+    ];
+
     return BottomNavigationBar(
       currentIndex: index,
       onTap: (value) {
-        widget.onTap?.call(value);
         setState(() => index = value);
+        widget.onTap?.call(value, names[index]);
       },
       items: [
         BottomNavigationBarItem(
@@ -36,7 +44,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         BottomNavigationBarItem(
           icon: const Icon(Icons.explore_outlined),
           activeIcon: const Icon(Icons.explore),
-          label: l10n.search,
+          label: l10n.explore,
         ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.search_outlined),
@@ -46,7 +54,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         BottomNavigationBarItem(
           icon: const Icon(Icons.library_music_outlined),
           activeIcon: const Icon(Icons.library_music),
-          label: l10n.search,
+          label: l10n.library,
         ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.person_outline),

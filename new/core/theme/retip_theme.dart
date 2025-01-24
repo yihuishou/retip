@@ -15,6 +15,9 @@ mixin RetipTheme {
       colorScheme: colorScheme,
       bottomNavigationBarTheme: _bottomNavigationBarTheme(colorScheme),
       iconButtonTheme: _iconButtonTheme(colorScheme),
+      splashFactory: NoSplash.splashFactory,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
     );
   }
 
@@ -29,13 +32,17 @@ mixin RetipTheme {
       colorScheme: colorScheme,
       bottomNavigationBarTheme: _bottomNavigationBarTheme(colorScheme),
       iconButtonTheme: _iconButtonTheme(colorScheme),
+      splashFactory: NoSplash.splashFactory,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
     );
   }
 
   static _bottomNavigationBarTheme(ColorScheme colorScheme) {
     return BottomNavigationBarThemeData(
-      unselectedItemColor: colorScheme.outline,
+      unselectedItemColor: colorScheme.onSurface,
       selectedItemColor: colorScheme.onSurface,
+      type: BottomNavigationBarType.shifting,
       showUnselectedLabels: true,
       showSelectedLabels: true,
     );
