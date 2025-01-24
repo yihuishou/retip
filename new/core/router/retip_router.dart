@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/presentation/pages/home/cubit/home_cubit.dart';
 import '../../app/presentation/pages/home/home_page.dart';
 import '../../app/presentation/pages/player/player_page.dart';
+import '../../app/presentation/views/search/cubit/search_cubit.dart';
 import '../../app/presentation/widgets/organisms/bottom_mini_player_widget.dart';
 import '../../app/presentation/widgets/organisms/bottom_navigation_widget.dart';
 
@@ -25,7 +26,12 @@ mixin RetipRouter {
             bottomNavigationBar: BottomNavigationWidget(
               onTap: (value, name) {
                 final bloc = context.read<HomeCubit?>();
-                bloc?.goToPage(value, name);
+
+                if (bloc?.state.index == value && value == 2) {
+                  context.read<SearchCubit>().state.focusNode.requestFocus();
+                } else {
+                  bloc?.goToPage(value, name);
+                }
               },
             ),
           );

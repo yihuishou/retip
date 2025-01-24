@@ -14,7 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
       curve: Curves.easeInOut,
     );
 
-    emit(HomeState(state.controller, name));
+    emit(HomeState(state.controller, name, value));
   }
 
   @override
