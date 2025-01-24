@@ -39,14 +39,22 @@ class PlayerWidget extends StatelessWidget {
               children: [
                 ArtworkImageWidget(path ?? ''),
                 const ContentPaddingWidget(),
-                Expanded(
+                const Expanded(
                   child: PlayingInfoColumnWidget(
-                    artist: artist,
-                    title: title,
+                    artist: 'Long Artist Name Long Artist Name',
+                    title: 'Long Title Name Long Title Name',
                   ),
                 ),
                 const ContentPaddingWidget(),
-                const PlayPauseIconWidget(),
+                IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.favorite_outline)),
+                const ContentPaddingWidget(),
+                PlayPauseIconWidget(
+                  onPressed: () {},
+                  isPlaying: false,
+                ),
+                // const ContentPaddingWidget(),
+                // IconButton(onPressed: () {}, icon: const Icon(Icons.skip_next)),
               ],
             ),
           ),

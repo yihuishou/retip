@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/l10n/retip_l10n.dart';
+import '../atoms/retip_icon_widget.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   final void Function(int value, String name)? onTap;
@@ -43,8 +44,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.home_outlined),
-            activeIcon: const Icon(Icons.home),
+            icon: const RetipIconWidget(),
+            activeIcon: const RetipIconWidget(),
             label: l10n.start,
           ),
           BottomNavigationBarItem(

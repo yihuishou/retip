@@ -44,6 +44,14 @@ class _PlayPauseIconWidgetState extends State<PlayPauseIconWidget>
         isPlaying ? _controller.forward() : _controller.reverse();
 
         return IconButton.filled(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(
+              Theme.of(context).colorScheme.secondary,
+            ),
+            foregroundColor: WidgetStatePropertyAll(
+              Theme.of(context).colorScheme.onSecondary,
+            ),
+          ),
           onPressed: widget.onPressed,
           icon: AnimatedIcon(
             icon: AnimatedIcons.play_pause,
