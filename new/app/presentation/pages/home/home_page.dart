@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../views/library/library_view.dart';
 import '../../views/search/search_view.dart';
 import 'cubit/home_cubit.dart';
 
@@ -29,10 +30,7 @@ class HomePage extends StatelessWidget {
                 child: const Text('Page 2'),
               ),
               const SearchView(),
-              Container(
-                color: Colors.yellow,
-                child: const Text('Page 4'),
-              ),
+              const LibraryView(),
               Container(
                 color: Colors.purple,
                 child: const Text('Page 5'),

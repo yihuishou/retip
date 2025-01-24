@@ -29,39 +29,46 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
       l10n.profile,
     ];
 
-    return BottomNavigationBar(
-      currentIndex: index,
-      onTap: (value) {
-        setState(() => index = value);
-        widget.onTap?.call(value, names[index]);
-      },
-      items: [
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.home_outlined),
-          activeIcon: const Icon(Icons.home),
-          label: l10n.start,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.explore_outlined),
-          activeIcon: const Icon(Icons.explore),
-          label: l10n.explore,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.search_outlined),
-          activeIcon: const Icon(Icons.search),
-          label: l10n.search,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.library_music_outlined),
-          activeIcon: const Icon(Icons.library_music),
-          label: l10n.library,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.person_outline),
-          activeIcon: const Icon(Icons.person),
-          label: l10n.profile,
-        ),
-      ],
+    return Theme(
+      data: Theme.of(context).copyWith(
+        splashFactory: NoSplash.splashFactory,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+      ),
+      child: BottomNavigationBar(
+        currentIndex: index,
+        onTap: (value) {
+          setState(() => index = value);
+          widget.onTap?.call(value, names[index]);
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home_outlined),
+            activeIcon: const Icon(Icons.home),
+            label: l10n.start,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.explore_outlined),
+            activeIcon: const Icon(Icons.explore),
+            label: l10n.explore,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.search_outlined),
+            activeIcon: const Icon(Icons.search),
+            label: l10n.search,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.library_music_outlined),
+            activeIcon: const Icon(Icons.library_music),
+            label: l10n.library,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person_outline),
+            activeIcon: const Icon(Icons.person),
+            label: l10n.profile,
+          ),
+        ],
+      ),
     );
   }
 }
