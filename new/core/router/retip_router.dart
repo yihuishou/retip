@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/presentation/pages/home/home_page.dart';
+import '../../app/presentation/widgets/organisms/bottom_navigation_widget.dart';
+import '../../app/presentation/widgets/organisms/bottom_mini_player_widget.dart';
 
 mixin RetipRouter {
   static final rootNavKey = GlobalKey<NavigatorState>();
@@ -16,13 +18,9 @@ mixin RetipRouter {
         builder: (context, state, child) {
           return Scaffold(
             body: child,
-            bottomSheet: Container(
-              color: Colors.green,
-              height: 50,
-            ),
-            bottomNavigationBar: Container(
-              color: Colors.blue,
-              height: 50,
+            bottomSheet: const PlayerWidget(),
+            bottomNavigationBar: BottomNavigationWidget(
+              onTap: (value) {},
             ),
           );
         },
