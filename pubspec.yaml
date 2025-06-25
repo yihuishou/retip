@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^15.2.4
+  talker_flutter: ^4.9.1
 
 dev_dependencies:
   flutter_lints: ^5.0.0
