@@ -95,6 +95,15 @@ class LibraryView extends StatelessWidget {
                   onTap: () {
                     context.push('/player');
                   },
+                  trailing: IconButton(
+                    onPressed: () {
+                      context.pushNamed(
+                        '/track:id',
+                        pathParameters: {'id': index.toString()},
+                      );
+                    },
+                    icon: Icon(Icons.more_vert),
+                  ),
                 );
               },
             ),

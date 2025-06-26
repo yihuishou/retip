@@ -12,6 +12,7 @@ import '../../app/presentation/pages/playlist/playlist_page.dart';
 import '../../app/presentation/pages/profile/profile_page.dart';
 import '../../app/presentation/pages/search/search_page.dart';
 import '../../app/presentation/pages/settings/settings_page.dart';
+import '../../app/presentation/pages/track/track_page.dart';
 import '../../app/presentation/widgets/bottom_navigation_widget.dart';
 
 class RetipRouter extends GoRouter {
@@ -71,6 +72,14 @@ class RetipRouter extends GoRouter {
                     builder: (context, state) {
                       final id = state.pathParameters['id'];
                       return GenrePage(genreId: int.parse(id!));
+                    },
+                  ),
+                  GoRoute(
+                    name: '/track:id',
+                    path: '/track:id',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id'];
+                      return TrackPage(trackId: int.parse(id!));
                     },
                   ),
                 ],
