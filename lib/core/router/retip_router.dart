@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/presentation/pages/album/album_page.dart';
 import '../../app/presentation/pages/artist/artist_page.dart';
+import '../../app/presentation/pages/dev/dev_page.dart';
 import '../../app/presentation/pages/genre/genre_page.dart';
 import '../../app/presentation/pages/home/home_page.dart';
 import '../../app/presentation/pages/library/library_page.dart';
@@ -86,6 +87,7 @@ class RetipRouter extends GoRouter {
                 path: '/settings',
                 builder: (context, state) => SettingsPage(),
               ),
+              GoRoute(path: '/dev', builder: (context, state) => DevPage()),
             ],
           ),
         ),
