@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:retip/main.dart';
 
 import '../../app/presentation/pages/album/album_page.dart';
 import '../../app/presentation/pages/artist/artist_page.dart';
@@ -97,6 +98,10 @@ class RetipRouter extends GoRouter {
                 builder: (context, state) => SettingsPage(),
               ),
               GoRoute(path: '/dev', builder: (context, state) => DevPage()),
+              GoRoute(
+                path: '/logger',
+                builder: (context, state) => logger.widget,
+              ),
             ],
           ),
         ),

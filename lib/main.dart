@@ -6,8 +6,9 @@ import 'core/router/retip_router.dart';
 import 'core/theme/retip_theme.dart';
 import 'core/utils/run_mode.dart';
 
+final logger = RetipLogger();
+
 void main() {
-  final logger = RetipLogger();
   final router = RetipRouter(observers: [logger.navigatorObserver]);
   final theme = RetipTheme();
 

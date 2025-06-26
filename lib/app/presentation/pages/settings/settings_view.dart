@@ -11,13 +11,20 @@ class SettingsView extends StatelessWidget {
       appBar: AppBar(
         title: Text('SettingsView'),
         actions: [
-          if (kReleaseMode == false)
+          if (kReleaseMode == false) ...[
+            IconButton(
+              onPressed: () {
+                context.push('/logger');
+              },
+              icon: Icon(Icons.troubleshoot),
+            ),
             IconButton(
               onPressed: () {
                 context.push('/dev');
               },
               icon: Icon(Icons.developer_board),
             ),
+          ],
         ],
       ),
     );
