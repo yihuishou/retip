@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app/presentation/pages/album/album_page.dart';
+import '../../app/presentation/pages/artist/artist_page.dart';
+import '../../app/presentation/pages/genre/genre_page.dart';
 import '../../app/presentation/pages/home/home_page.dart';
 import '../../app/presentation/pages/library/library_page.dart';
+import '../../app/presentation/pages/playlist/playlist_page.dart';
 import '../../app/presentation/pages/search/search_page.dart';
 import '../../app/presentation/widgets/bottom_navigation_widget.dart';
 
@@ -32,6 +36,38 @@ class RetipRouter extends GoRouter {
                   GoRoute(
                     path: '/search',
                     builder: (context, state) => SearchPage(),
+                  ),
+                  GoRoute(
+                    name: '/playlist:id',
+                    path: '/playlist:id',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id'];
+                      return PlaylistPage(playlistId: int.parse(id!));
+                    },
+                  ),
+                  GoRoute(
+                    name: '/album:id',
+                    path: '/album:id',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id'];
+                      return AlbumPage(albumId: int.parse(id!));
+                    },
+                  ),
+                  GoRoute(
+                    name: '/artist:id',
+                    path: '/artist:id',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id'];
+                      return ArtistPage(artistId: int.parse(id!));
+                    },
+                  ),
+                  GoRoute(
+                    name: '/genre:id',
+                    path: '/genre:id',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id'];
+                      return GenrePage(genreId: int.parse(id!));
+                    },
                   ),
                 ],
               ),
