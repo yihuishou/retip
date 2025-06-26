@@ -89,7 +89,13 @@ class LibraryView extends StatelessWidget {
             ListView.builder(
               itemCount: 100,
               itemBuilder: (context, index) {
-                return ListTile(title: Text('Track $index'));
+                return ListTile(
+                  title: Text('Track $index'),
+
+                  onTap: () {
+                    context.push('/player');
+                  },
+                );
               },
             ),
           ],

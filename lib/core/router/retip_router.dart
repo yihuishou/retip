@@ -6,7 +6,9 @@ import '../../app/presentation/pages/artist/artist_page.dart';
 import '../../app/presentation/pages/genre/genre_page.dart';
 import '../../app/presentation/pages/home/home_page.dart';
 import '../../app/presentation/pages/library/library_page.dart';
+import '../../app/presentation/pages/player/player_page.dart';
 import '../../app/presentation/pages/playlist/playlist_page.dart';
+import '../../app/presentation/pages/profile/profile_page.dart';
 import '../../app/presentation/pages/search/search_page.dart';
 import '../../app/presentation/widgets/bottom_navigation_widget.dart';
 
@@ -70,6 +72,14 @@ class RetipRouter extends GoRouter {
                     },
                   ),
                 ],
+              ),
+              GoRoute(
+                path: '/player',
+                builder: (context, state) => PlayerPage(),
+              ),
+              GoRoute(
+                path: '/profile',
+                builder: (context, state) => ProfilePage(),
               ),
             ],
           ),
